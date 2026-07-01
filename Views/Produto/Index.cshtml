@@ -1,0 +1,38 @@
+@model IEnumerable<LicenseGesture.Models.Produto>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<h1>Produtos cadastrados</h1>
+
+@if (Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Valor de venda</th>
+                    <th>Validade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var produto in Model)
+                {
+                    <tr>
+                        <td>@produto.Id</td>
+                        <td>@produto.Nome</td>
+                        <td>@(produto.ValorVenda?.ToString("C"))</td>
+                        <td>@produto.Validade</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>Nenhum produto cadastrado.</p>
+}
