@@ -1,0 +1,144 @@
+@model LicenseGesture.Models.Produto
+@using LicenseGesture.Enums
+
+@{
+    ViewData["Title"] = "Novo Produto";
+}
+
+<link rel="stylesheet" href="~/css/produto.css" asp-append-version="true" />
+
+<section class="produto-page">
+    <div class="produto-hero">
+        <div>
+            <span class="produto-kicker">Cadastro de produto</span>
+            <h1>Novo Produto</h1>
+        </div>
+
+        <a class="produto-back-link" asp-action="Index">Voltar para lista</a>
+    </div>
+
+    <form asp-action="Create" method="post" class="produto-form">
+        <div asp-validation-summary="ModelOnly" class="produto-validation"></div>
+
+        <div class="produto-form-grid">
+            <div class="produto-section produto-section-main">
+                <div class="produto-section-header">
+                    <span>01</span>
+                    <div>
+                        <h2>Identificacao</h2>
+                        <p>Dados principais da licenca cadastrada.</p>
+                    </div>
+                </div>
+
+                <div class="produto-fields-grid">
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="Nome"></label>
+                        <input asp-for="Nome" placeholder="Ex: Microsoft 365 Business" autocomplete="off" />
+                        <span asp-validation-for="Nome"></span>
+                    </div>
+
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="Chave"></label>
+                        <input asp-for="Chave" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" autocomplete="off" />
+                        <span asp-validation-for="Chave"></span>
+                    </div>
+
+                    <div class="produto-field">
+                        <label asp-for="TipoProduto">Tipo de produto</label>
+                        <select asp-for="TipoProduto" asp-items="Html.GetEnumSelectList<TipoProduto>()">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="TipoProduto"></span>
+                    </div>
+
+                    <div class="produto-field">
+                        <label asp-for="Validade"></label>
+                        <input asp-for="Validade" placeholder="Ex: 1 ano ou vitalicia" autocomplete="off" />
+                        <span asp-validation-for="Validade"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produto-section produto-values-section">
+                <div class="produto-section-header">
+                    <span>02</span>
+                    <div>
+                        <h2>Valores e documento</h2>
+                        <p>Informe custos, venda e nota fiscal de entrada.</p>
+                    </div>
+                </div>
+
+                <div class="produto-fields-grid">
+                    <div class="produto-field">
+                        <label asp-for="ValorCusto">Valor de custo</label>
+                        <input asp-for="ValorCusto" type="number" min="0" step="0.01" placeholder="0,00" />
+                        <span asp-validation-for="ValorCusto"></span>
+                    </div>
+
+                    <div class="produto-field">
+                        <label asp-for="ValorVenda">Valor de venda</label>
+                        <input asp-for="ValorVenda" type="number" min="0" step="0.01" placeholder="0,00" />
+                        <span asp-validation-for="ValorVenda"></span>
+                    </div>
+
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="NfEntrada">NF de entrada</label>
+                        <input asp-for="NfEntrada" type= "number" placeholder="Numero da nota fiscal" autocomplete="off" />
+                        <span asp-validation-for="NfEntrada"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produto-section produto-limits-section">
+                <div class="produto-section-header">
+                    <span>03</span>
+                    <div>
+                        <h2>Limites de uso</h2>
+                        <p>Defina as quantidades permitidas pela licenca.</p>
+                    </div>
+                </div>
+
+                <div class="produto-fields-grid">
+                    <div class="produto-field">
+                        <label asp-for="QuantDispositivos">Dispositivos</label>
+                        <input asp-for="QuantDispositivos" type="number" min="0" placeholder="0" />
+                        <span asp-validation-for="QuantDispositivos"></span>
+                    </div>
+
+                    <div class="produto-field">
+                        <label asp-for="QuantUsuarios">Usuarios</label>
+                        <input asp-for="QuantUsuarios" type="number" min="0" placeholder="0" />
+                        <span asp-validation-for="QuantUsuarios"></span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="produto-section produto-status-panel">
+                <div class="produto-section-header">
+                    <span>04</span>
+                    <div>
+                        <h2>Status</h2>
+                        <p>Controle se o produto esta ativo.</p>
+                    </div>
+                </div>
+
+                <label class="produto-switch">
+                    <input asp-for="Ativo" />
+                    <span></span>
+                    <strong>Produto ativo</strong>
+                </label>
+            </aside>
+        </div>
+
+        <div class="produto-actions">
+            <a class="produto-button produto-button-light" asp-action="Index">Cancelar</a>
+            <button type="submit" class="produto-button produto-button-primary">Cadastrar produto</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
