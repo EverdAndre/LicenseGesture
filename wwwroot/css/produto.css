@@ -1,0 +1,516 @@
+.produto-page {
+    color: #172033;
+    padding: 24px 0 44px;
+}
+
+.produto-index-header {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.produto-index-header h1 {
+    color: #172033;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin: 0;
+}
+
+.produto-create-button {
+    align-items: center;
+    background: #1f7a76;
+    border-radius: 8px;
+    box-shadow: 0 10px 22px rgba(31, 122, 118, 0.22);
+    color: #fff;
+    display: inline-flex;
+    font-weight: 800;
+    gap: 9px;
+    min-height: 44px;
+    padding: 0 16px;
+    text-decoration: none;
+}
+
+.produto-create-button span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    display: inline-flex;
+    flex: 0 0 24px;
+    font-size: 1.3rem;
+    height: 24px;
+    justify-content: center;
+    line-height: 1;
+    width: 24px;
+}
+
+.produto-create-button:hover {
+    background: #17645f;
+    color: #fff;
+}
+
+.produto-actions-column,
+.produto-actions-cell {
+    text-align: center;
+    white-space: nowrap;
+    width: 170px;
+}
+
+.produto-actions-cell {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.produto-action-button {
+    align-items: center;
+    border-radius: 8px;
+    display: inline-flex;
+    height: 38px;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.produto-view-button {
+    background: #e8f5f3;
+    border: 1px solid #c8e8e4;
+    color: #1f7a76;
+    width: 38px;
+}
+
+.produto-sell-button {
+    background: #fff7e6;
+    border: 1px solid #f3d595;
+    color: #936316;
+    font-size: 0.88rem;
+    font-weight: 800;
+    gap: 7px;
+    padding: 0 12px;
+}
+
+.produto-action-button svg {
+    fill: none;
+    height: 20px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+    width: 20px;
+}
+
+.produto-view-button:hover,
+.produto-sell-button:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.produto-view-button:hover {
+    background: #1f7a76;
+    border-color: #1f7a76;
+}
+
+.produto-sell-button:hover {
+    background: #b7791f;
+    border-color: #b7791f;
+}
+
+.produto-hero {
+    align-items: flex-end;
+    background: linear-gradient(135deg, #103f5c 0%, #1f7a76 52%, #f2b84b 100%);
+    border-radius: 8px;
+    box-shadow: 0 20px 42px rgba(16, 63, 92, 0.18);
+    color: #fff;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    overflow: hidden;
+    padding: 34px;
+    position: relative;
+}
+
+.produto-hero::after {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    content: "";
+    height: 150px;
+    position: absolute;
+    right: -48px;
+    top: -54px;
+    transform: rotate(18deg);
+    width: 220px;
+}
+
+.produto-kicker {
+    color: #ffe2a3;
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.produto-hero h1 {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 0 0 10px;
+}
+
+.produto-hero p {
+    color: rgba(255, 255, 255, 0.84);
+    margin: 0;
+    max-width: 620px;
+}
+
+.produto-back-link {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    color: #fff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 700;
+    min-height: 44px;
+    padding: 0 16px;
+    position: relative;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.produto-back-link:hover {
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff;
+}
+
+.produto-form {
+    background: #f7f9fc;
+    border: 1px solid #dfe6ef;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.produto-form-grid {
+    align-items: stretch;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+}
+
+.produto-section {
+    background: #fff;
+    border: 1px solid #e3e9f2;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.06);
+    padding: 22px;
+}
+
+.produto-section-main {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.produto-values-section {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.produto-status-panel {
+    align-self: stretch;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.produto-limits-section {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.produto-section-header {
+    align-items: flex-start;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.produto-section-header > span {
+    align-items: center;
+    background: #e8f5f3;
+    border-radius: 8px;
+    color: #1f7a76;
+    display: inline-flex;
+    flex: 0 0 42px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    height: 42px;
+    justify-content: center;
+}
+
+.produto-section-header h2 {
+    color: #172033;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 4px;
+}
+
+.produto-section-header p,
+.produto-status-hint {
+    color: #64748b;
+    font-size: 0.92rem;
+    margin: 0;
+}
+
+.produto-fields-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.produto-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.produto-field-wide {
+    grid-column: 1 / -1;
+}
+
+.produto-field label {
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 750;
+}
+
+.produto-field input,
+.produto-field select {
+    background: #fbfdff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #172033;
+    font-size: 0.98rem;
+    min-height: 46px;
+    outline: none;
+    padding: 10px 13px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    width: 100%;
+}
+
+.produto-field input:focus,
+.produto-field select:focus {
+    background: #fff;
+    border-color: #1f7a76;
+    box-shadow: 0 0 0 4px rgba(31, 122, 118, 0.13);
+}
+
+.produto-field input::placeholder {
+    color: #94a3b8;
+}
+
+.produto-field span,
+.produto-validation {
+    color: #c2410c;
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.produto-validation:empty {
+    display: none;
+}
+
+.produto-status-panel {
+    background: #172033;
+    border-color: #172033;
+    color: #fff;
+    padding: 16px;
+}
+
+.produto-status-panel .produto-section-header > span {
+    background: rgba(242, 184, 75, 0.16);
+    color: #f2b84b;
+}
+
+.produto-status-panel .produto-section-header h2 {
+    color: #fff;
+}
+
+.produto-status-panel .produto-section-header p,
+.produto-status-panel .produto-status-hint {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.produto-status-panel .produto-section-header {
+    margin-bottom: 12px;
+}
+
+.produto-status-panel .produto-section-header > span {
+    flex-basis: 34px;
+    font-size: 0.78rem;
+    height: 34px;
+}
+
+.produto-status-panel .produto-section-header h2 {
+    font-size: 0.98rem;
+}
+
+.produto-status-panel .produto-section-header p {
+    font-size: 0.84rem;
+}
+
+.produto-switch {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 0;
+    min-height: 48px;
+    padding: 10px 12px;
+}
+
+.produto-switch input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.produto-switch span {
+    background: #526174;
+    border-radius: 999px;
+    display: inline-flex;
+    flex: 0 0 48px;
+    height: 28px;
+    padding: 3px;
+    transition: background 0.18s ease;
+}
+
+.produto-switch span::before {
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+    content: "";
+    height: 22px;
+    transition: transform 0.18s ease;
+    width: 22px;
+}
+
+.produto-switch input:checked + span {
+    background: #2dbb8f;
+}
+
+.produto-switch input:checked + span::before {
+    transform: translateX(20px);
+}
+
+.produto-switch strong {
+    color: #fff;
+    font-size: 0.96rem;
+}
+
+.produto-actions {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.produto-button {
+    align-items: center;
+    border: 0;
+    border-radius: 8px;
+    display: inline-flex;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 46px;
+    min-width: 150px;
+    padding: 0 18px;
+    text-decoration: none;
+}
+
+.produto-button-primary {
+    background: #1f7a76;
+    box-shadow: 0 10px 22px rgba(31, 122, 118, 0.24);
+    color: #fff;
+}
+
+.produto-button-primary:hover {
+    background: #17645f;
+    color: #fff;
+}
+
+.produto-button-light {
+    background: #e9eef5;
+    color: #334155;
+}
+
+.produto-button-light:hover {
+    background: #d9e2ee;
+    color: #172033;
+}
+
+.produto-button-danger,
+.produto-button-danger {
+    background: #dc2626;
+    box-shadow: 0 10px 22px rgba(220, 38, 38, 0.22);
+    color: #fff;
+}
+
+.produto-button-danger:hover,
+.produto-button-danger:hover {
+    background: #b91c1c;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .produto-hero,
+    .produto-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .produto-section-main,
+    .produto-values-section,
+    .produto-limits-section,
+    .produto-status-panel {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .produto-hero {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .produto-page {
+        padding-top: 8px;
+    }
+
+    .produto-hero,
+    .produto-form,
+    .produto-section {
+        padding: 18px;
+    }
+
+    .produto-fields-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .produto-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .produto-button {
+        width: 100%;
+    }
+}

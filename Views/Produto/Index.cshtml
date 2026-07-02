@@ -4,7 +4,16 @@
     ViewData["Title"] = "Produtos";
 }
 
-<h1>Produtos cadastrados</h1>
+<link rel="stylesheet" href="~/css/produto.css" asp-append-version="true" />
+
+<div class="produto-index-header">
+    <a class="produto-create-button" asp-action="Create" aria-label="Cadastrar produto">
+        <span aria-hidden="true">+</span>
+        Cadastrar
+    </a>
+
+    <h1>Produtos cadastrados</h1>
+</div>
 
 @if (Model.Any())
 {
@@ -16,6 +25,7 @@
                     <th>Nome</th>
                     <th>Valor de venda</th>
                     <th>Validade</th>
+                    <th class="produto-actions-column">Acoes</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +36,22 @@
                         <td>@produto.Nome</td>
                         <td>@(produto.ValorVenda?.ToString("C"))</td>
                         <td>@produto.Validade</td>
+                        <td class="produto-actions-cell">
+                            <a class="produto-action-button produto-view-button" asp-action="Edit" asp-route-id="@produto.Id" aria-label="Visualizar @produto.Nome" title="Visualizar">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+                                    <circle cx="12" cy="12" r="2.8" />
+                                </svg>
+                            </a>
+
+                            <a class="produto-action-button produto-sell-button" asp-controller="Venda" asp-action="Index" asp-route-produtoId="@produto.Id" aria-label="Vender @produto.Nome" title="Vender">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M12 2v20" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                                <span>Vender</span>
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>

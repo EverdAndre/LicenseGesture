@@ -9,10 +9,10 @@ public class Produto
     [Key]
     public int Id { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Campo Nome é Obrigatório!")]
     public string Nome { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "Campo Chave é Obrigatório!")]
     public string Chave { get; set; } = string.Empty;
     public int? QuantDispositivos { get; set; }
     public int? QuantUsuarios { get; set; }
@@ -22,6 +22,6 @@ public class Produto
     public string? Validade { get; set; }
     public bool Ativo { get; set; } = true;
     public DateTime CriadoEm { get; set; } = DateTime.Now;
-    public TipoProduto TipoProduto { get; set; }
+    public TipoProduto? TipoProduto { get; set; }
     public ICollection<Venda> Vendas { get; set; } = [];
 }
