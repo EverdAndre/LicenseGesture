@@ -469,6 +469,14 @@
     background: #b91c1c;
     color: #fff;
 }
+.produto-section-header > .produto-alert-icon {
+    background: #facc15;
+    color: #172033;
+    flex-basis: 56px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    height: 56px;
+}
 
 @media (max-width: 900px) {
     .produto-hero,
@@ -513,4 +521,5 @@
     .produto-button {
         width: 100%;
     }
+
 }

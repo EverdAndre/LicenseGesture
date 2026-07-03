@@ -131,7 +131,7 @@
         </div>
 
         <div class="produto-actions">
-            <a class="produto-button produto-button-danger" asp-action="Index">Excluir</a>
+            <a class="produto-button produto-button-danger" asp-action="Delete" asp-route-id="@Model.Id">Excluir</a>
             <a class="produto-button produto-button-light" asp-action="Index">Cancelar</a>
             <button type="submit" class="produto-button produto-button-primary">Salvar</button>
         </div>

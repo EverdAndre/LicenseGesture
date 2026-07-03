@@ -2,6 +2,7 @@ using System.Data.Common;
 using LicenseGesture.Context;
 using LicenseGesture.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 public class ProdutoController : Controller
@@ -78,5 +79,31 @@ public class ProdutoController : Controller
         {
             return View();
         }
+    }
+
+    // Get : Produto/Delete
+    public IActionResult Delete(int Id)
+    {
+        var produto = _context.Produtos.Find(Id);
+        if (produto == null)
+        {
+            return NotFound();
+        }
+        return View(produto);
+    }
+
+    // Post : Produto/Delete
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var produtoBanco = _context.Produtos.Find(id);
+        if (produtoBanco == null)
+        {
+            return NotFound();
+        }
+        produtoBanco.Ativo = false;
+        _context.SaveChanges();
+        return RedirectToAction("Index");
     }
 }
