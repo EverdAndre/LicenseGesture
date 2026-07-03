@@ -50,6 +50,66 @@
     color: #fff;
 }
 
+.produto-search-form {
+    display: flex;
+    gap: 10px;
+    max-width: 660px;
+    width: 100%;
+}
+
+.produto-search-form form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.produto-search-form input {
+    background: #fbfdff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #172033;
+    flex: 1;
+    min-height: 44px;
+    outline: none;
+    padding: 10px 13px;
+}
+
+.produto-search-form input:focus {
+    border-color: #1f7a76;
+    box-shadow: 0 0 0 4px rgba(31, 122, 118, 0.13);
+}
+
+.produto-search-form button {
+    background: #1f7a76;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 800;
+    min-height: 44px;
+    padding: 0 18px;
+}
+
+.produto-search-form button:hover {
+    background: #17645f;
+}
+
+.table thead a {
+    color: #000;
+    text-decoration: none;
+}
+
+.table thead a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.produto-sort-icon {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    margin-left: 4px;
+}
+
 .produto-actions-column,
 .produto-actions-cell {
     text-align: center;
@@ -516,6 +576,14 @@
     .produto-actions {
         align-items: stretch;
         flex-direction: column-reverse;
+    }
+
+    .produto-search-form {
+        flex-direction: column;
+    }
+
+    .produto-search-form form {
+        flex-direction: column;
     }
 
     .produto-button {

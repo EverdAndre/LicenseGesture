@@ -1,0 +1,570 @@
+.cliente-index-header {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.cliente-index-header h1 {
+    color: #172033;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin: 0;
+}
+
+.cliente-create-button {
+    align-items: center;
+    background: #1f7a76;
+    border-radius: 8px;
+    box-shadow: 0 10px 22px rgba(31, 122, 118, 0.22);
+    color: #fff;
+    display: inline-flex;
+    font-weight: 800;
+    gap: 9px;
+    min-height: 44px;
+    padding: 0 16px;
+    text-decoration: none;
+}
+
+.cliente-create-button span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    display: inline-flex;
+    flex: 0 0 24px;
+    font-size: 1.3rem;
+    height: 24px;
+    justify-content: center;
+    line-height: 1;
+    width: 24px;
+}
+
+.cliente-create-button:hover {
+    background: #17645f;
+    color: #fff;
+}
+
+.cliente-search-form {
+    display: flex;
+    gap: 10px;
+    max-width: 660px;
+    width: 100%;
+}
+
+.cliente-search-form form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.cliente-search-form input {
+    background: #fbfdff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #172033;
+    flex: 1;
+    min-height: 44px;
+    outline: none;
+    padding: 10px 13px;
+}
+
+.cliente-search-form input:focus {
+    border-color: #1f7a76;
+    box-shadow: 0 0 0 4px rgba(31, 122, 118, 0.13);
+}
+
+.cliente-search-form button {
+    background: #1f7a76;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 800;
+    min-height: 44px;
+    padding: 0 18px;
+}
+
+.cliente-search-form button:hover {
+    background: #17645f;
+}
+
+.table thead a {
+    color: #000;
+    text-decoration: none;
+}
+
+.table thead a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.cliente-sort-icon {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    margin-left: 4px;
+}
+
+.cliente-actions-column,
+.cliente-actions-cell {
+    text-align: center;
+    white-space: nowrap;
+    width: 190px;
+}
+
+.cliente-actions-cell {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.cliente-action-button {
+    align-items: center;
+    border-radius: 8px;
+    display: inline-flex;
+    height: 38px;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.cliente-action-button svg {
+    fill: none;
+    height: 20px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+    width: 20px;
+}
+
+.cliente-action-button.produto-view-button {
+    background: #e8f5f3;
+    border: 1px solid #c8e8e4;
+    color: #1f7a76;
+    width: 38px;
+}
+
+.cliente-sell-button {
+    background: #e7f8ee;
+    border: 1px solid #b7e7c7;
+    color: #128c3a;
+    font-size: 0.88rem;
+    font-weight: 800;
+    gap: 7px;
+    padding: 0 12px;
+}
+
+.cliente-action-button.produto-view-button:hover,
+.cliente-sell-button:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.cliente-action-button.produto-view-button:hover {
+    background: #1f7a76;
+    border-color: #1f7a76;
+}
+
+.cliente-sell-button:hover {
+    background: #128c3a;
+    border-color: #128c3a;
+}
+
+.cliente-page {
+    color: #172033;
+    padding: 24px 0 44px;
+}
+
+.cliente-hero {
+    align-items: flex-end;
+    background: linear-gradient(135deg, #103f5c 0%, #1f7a76 52%, #f2b84b 100%);
+    border-radius: 8px;
+    box-shadow: 0 20px 42px rgba(16, 63, 92, 0.18);
+    color: #fff;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    overflow: hidden;
+    padding: 34px;
+    position: relative;
+}
+
+.cliente-hero::after {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    content: "";
+    height: 150px;
+    position: absolute;
+    right: -48px;
+    top: -54px;
+    transform: rotate(18deg);
+    width: 220px;
+}
+
+.cliente-kicker {
+    color: #ffe2a3;
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.cliente-hero h1 {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 0 0 10px;
+}
+
+.cliente-back-link {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    color: #fff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 700;
+    min-height: 44px;
+    padding: 0 16px;
+    position: relative;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.cliente-back-link:hover {
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff;
+}
+
+.cliente-form {
+    background: #f7f9fc;
+    border: 1px solid #dfe6ef;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.cliente-form-grid {
+    align-items: stretch;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.cliente-section {
+    background: #fff;
+    border: 1px solid #e3e9f2;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.06);
+    padding: 22px;
+}
+
+.cliente-section-main {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+.cliente-contact-section {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.cliente-status-panel {
+    align-self: start;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.cliente-section-main .cliente-fields-grid {
+    grid-template-columns: minmax(260px, 1.4fr) minmax(180px, 0.9fr) minmax(200px, 1fr);
+}
+
+.cliente-section-main .cliente-field-type {
+    grid-column: 1;
+}
+
+.cliente-section-main .cliente-field-type + .cliente-field {
+    grid-column: 2 / -1;
+}
+
+.cliente-section-header {
+    align-items: flex-start;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.cliente-section-header > span {
+    align-items: center;
+    background: #e8f5f3;
+    border-radius: 8px;
+    color: #1f7a76;
+    display: inline-flex;
+    flex: 0 0 42px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    height: 42px;
+    justify-content: center;
+}
+
+.cliente-section-header h2 {
+    color: #172033;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 4px;
+}
+
+.cliente-section-header p {
+    color: #64748b;
+    font-size: 0.92rem;
+    margin: 0;
+}
+
+.cliente-fields-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cliente-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.cliente-field-wide {
+    grid-column: 1 / -1;
+}
+
+.cliente-field label {
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 750;
+}
+
+.cliente-field input,
+.cliente-field select {
+    background: #fbfdff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #172033;
+    font-size: 0.98rem;
+    min-height: 46px;
+    outline: none;
+    padding: 10px 13px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    width: 100%;
+}
+
+.cliente-field input:focus,
+.cliente-field select:focus {
+    background: #fff;
+    border-color: #1f7a76;
+    box-shadow: 0 0 0 4px rgba(31, 122, 118, 0.13);
+}
+
+.cliente-field input::placeholder {
+    color: #94a3b8;
+}
+
+.cliente-field span,
+.cliente-validation {
+    color: #c2410c;
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.cliente-validation:empty {
+    display: none;
+}
+
+.cliente-status-panel {
+    background: #172033;
+    border-color: #172033;
+    color: #fff;
+    padding: 14px;
+}
+
+.cliente-status-panel .cliente-section-header > span {
+    background: rgba(242, 184, 75, 0.16);
+    color: #f2b84b;
+}
+
+.cliente-status-panel .cliente-section-header h2 {
+    color: #fff;
+}
+
+.cliente-status-panel .cliente-section-header p {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.cliente-status-panel .cliente-section-header {
+    margin-bottom: 10px;
+}
+
+.cliente-status-panel .cliente-section-header > span {
+    flex-basis: 30px;
+    font-size: 0.74rem;
+    height: 30px;
+}
+
+.cliente-status-panel .cliente-section-header h2 {
+    font-size: 0.92rem;
+}
+
+.cliente-status-panel .cliente-section-header p {
+    font-size: 0.78rem;
+}
+
+.cliente-switch {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+    min-height: 42px;
+    padding: 8px 10px;
+}
+
+.cliente-switch input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.cliente-switch span {
+    background: #526174;
+    border-radius: 999px;
+    display: inline-flex;
+    flex: 0 0 42px;
+    height: 24px;
+    padding: 3px;
+    transition: background 0.18s ease;
+}
+
+.cliente-switch span::before {
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+    content: "";
+    height: 18px;
+    transition: transform 0.18s ease;
+    width: 18px;
+}
+
+.cliente-switch input:checked + span {
+    background: #2dbb8f;
+}
+
+.cliente-switch input:checked + span::before {
+    transform: translateX(18px);
+}
+
+.cliente-switch strong {
+    color: #fff;
+    font-size: 0.88rem;
+}
+
+.cliente-actions {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.cliente-button {
+    align-items: center;
+    border: 0;
+    border-radius: 8px;
+    display: inline-flex;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 46px;
+    min-width: 150px;
+    padding: 0 18px;
+    text-decoration: none;
+}
+
+.cliente-button-primary {
+    background: #1f7a76;
+    box-shadow: 0 10px 22px rgba(31, 122, 118, 0.24);
+    color: #fff;
+}
+
+.cliente-button-primary:hover {
+    background: #17645f;
+    color: #fff;
+}
+
+.cliente-button-light {
+    background: #e9eef5;
+    color: #334155;
+}
+
+.cliente-button-light:hover {
+    background: #d9e2ee;
+    color: #172033;
+}
+
+@media (max-width: 900px) {
+    .cliente-hero,
+    .cliente-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cliente-section-main,
+    .cliente-contact-section,
+    .cliente-status-panel {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .cliente-hero {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .cliente-page {
+        padding-top: 8px;
+    }
+
+    .cliente-hero,
+    .cliente-form,
+    .cliente-section {
+        padding: 18px;
+    }
+
+    .cliente-fields-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cliente-section-main .cliente-fields-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cliente-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .cliente-search-form,
+    .cliente-search-form form {
+        flex-direction: column;
+    }
+
+    .cliente-button {
+        width: 100%;
+    }
+}

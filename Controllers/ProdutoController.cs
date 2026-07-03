@@ -15,9 +15,31 @@ public class ProdutoController : Controller
     }
 
     //retorna lista de produtos do bd
-    public IActionResult Index()
+    public IActionResult Index(string? busca, string? ordenarPor, string? direcao)
     {
-        var produtos = _context.Produtos.Where(p => p.Ativo).ToList();
+        var query = _context.Produtos.Where(p => p.Ativo).AsQueryable();
+        ordenarPor = string.IsNullOrWhiteSpace(ordenarPor) ? "id" : ordenarPor;
+        direcao = direcao == "desc" ? "desc" : "asc";
+
+        if (!string.IsNullOrWhiteSpace(busca))
+        {
+            query = query.Where(p => p.Nome.Contains(busca));
+        }
+        var produtos = query.ToList();
+        produtos = (ordenarPor, direcao) switch
+        {
+            ("id", "desc") => produtos.OrderByDescending(p => p.Id).ToList(),
+            ("nome", "desc") => produtos.OrderByDescending(p => p.Nome).ToList(),
+            ("valor", "desc") => produtos.OrderByDescending(p => p.ValorVenda ?? 0).ToList(),
+            ("validade", "desc") => produtos.OrderByDescending(p => p.Validade).ToList(),
+            ("nome", _) => produtos.OrderBy(p => p.Nome).ToList(),
+            ("valor", _) => produtos.OrderBy(p => p.ValorVenda ?? 0).ToList(),
+            ("validade", _) => produtos.OrderBy(p => p.Validade).ToList(),
+            _ => produtos.OrderBy(p => p.Id).ToList(),
+        };
+        ViewData["BuscaAtual"] = busca;
+        ViewData["OrdenacaoAtual"] = ordenarPor;
+        ViewData["DirecaoAtual"] = direcao;
 
         return View(produtos);
     }
