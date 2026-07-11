@@ -316,14 +316,33 @@ body {
     font-weight: 800;
     letter-spacing: 0.04em;
     padding: 14px 16px;
+    text-align: left;
     text-transform: uppercase;
+    vertical-align: middle;
     white-space: nowrap;
+}
+
+.venda-table thead a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.venda-table thead a:hover,
+.venda-table thead a:focus-visible {
+    color: #17645f;
+}
+
+.venda-sort-icon {
+    display: inline-block;
+    font-size: 0.78rem;
+    margin-left: 4px;
 }
 
 .venda-table tbody td {
     border-bottom: 1px solid #edf2f7;
     color: #334155;
     padding: 15px 16px;
+    text-align: center;
     vertical-align: middle;
     white-space: nowrap;
 }
@@ -332,6 +351,20 @@ body {
 .venda-table tbody td:nth-child(3) {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.venda-table thead th:nth-child(2),
+.venda-table thead th:nth-child(3),
+.venda-table thead th:nth-child(4),
+.venda-table tbody td:nth-child(2),
+.venda-table tbody td:nth-child(3),
+.venda-table tbody td:nth-child(4) {
+    text-align: left;
+}
+
+.venda-table thead th:nth-child(5),
+.venda-table thead th:nth-child(6) {
+    text-align: center;
 }
 
 .venda-table tbody tr:last-child td {

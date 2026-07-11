@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Home";
     var vendas = Model ?? Enumerable.Empty<LicenseGesture.Models.Venda>();
+    var ordenacaoAtual = ViewData["OrdenacaoAtual"]?.ToString();
+    var direcaoAtual = ViewData["DirecaoAtual"]?.ToString();
+    string ProximaDirecao(string coluna) => ordenacaoAtual == coluna && direcaoAtual == "asc" ? "desc" : "asc";
+    string SetaOrdenacao(string coluna) => ordenacaoAtual == coluna ? (direcaoAtual == "asc" ? "↑" : "↓") : "↕";
 }
 
 <link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
@@ -16,6 +20,8 @@
 
         <div class="venda-index-actions">
             <form class="venda-search-form" asp-action="Index" method="get">
+                <input type="hidden" name="ordenarPor" value="@ordenacaoAtual" />
+                <input type="hidden" name="direcao" value="@direcaoAtual" />
                 <div class="venda-search-autocomplete">
                     <input id="VendaBusca" type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar venda por cliente ou produto..." autocomplete="off" />
                     <div id="vendaBuscaResultado" class="autocomplete-list"></div>
@@ -37,10 +43,26 @@
                 <table class="table venda-table">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Cliente</th>
-                            <th>Produto</th>
-                            <th>Expira em</th>
+                            <th>
+                                <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="id" asp-route-direcao="@ProximaDirecao("id")">
+                                    Id <span class="venda-sort-icon">@SetaOrdenacao("id")</span>
+                                </a>
+                            </th>
+                            <th>
+                                <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="cliente" asp-route-direcao="@ProximaDirecao("cliente")">
+                                    Cliente <span class="venda-sort-icon">@SetaOrdenacao("cliente")</span>
+                                </a>
+                            </th>
+                            <th>
+                                <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="produto" asp-route-direcao="@ProximaDirecao("produto")">
+                                    Produto <span class="venda-sort-icon">@SetaOrdenacao("produto")</span>
+                                </a>
+                            </th>
+                            <th>
+                                <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="validade" asp-route-direcao="@ProximaDirecao("validade")">
+                                    Expira em <span class="venda-sort-icon">@SetaOrdenacao("validade")</span>
+                                </a>
+                            </th>
                             <th>Status</th>
                             <th class="venda-actions-column">Ações</th>
                         </tr>
@@ -52,8 +74,8 @@
                             var statusTexto = venda.Anulada ? "Cancelada" : "Ativa";
 
                             <tr>
-                                <td class="venda-id">#@venda.Id</td>
-                                <td><strong>@(venda.Cliente?.Nome ?? $"Cliente #{venda.ClienteId}")</strong></td>
+                                <td class="venda-id"># @venda.Id</td>
+                                <td>@(venda.Cliente?.Nome ?? $"Cliente #{venda.ClienteId}")</td>
                                 <td>@(venda.Produto?.Nome ?? $"Produto #{venda.ProdutoId}")</td>
                                 <td>@venda.ExpiraEm.ToString("dd/MM/yyyy")</td>
                                 <td>
@@ -79,7 +101,6 @@
         <div class="venda-empty-state">
             <span>0</span>
             <h2>Nenhuma venda cadastrada</h2>
-            <p>Cadastre uma nova venda ou ajuste a busca para encontrar registros existentes.</p>
             <a class="venda-button venda-button-primary" asp-controller="Venda" asp-action="Create">Cadastrar venda</a>
         </div>
     }

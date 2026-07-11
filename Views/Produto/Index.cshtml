@@ -64,7 +64,7 @@
                 @foreach (var produto in Model)
                 {
                     <tr>
-                        <td>@produto.Id</td>
+                        <td># @produto.Id</td>
                         <td>@produto.Nome</td>
                         <td>@(produto.ValorVenda?.ToString("C"))</td>
                         <td>@produto.Validade</td>

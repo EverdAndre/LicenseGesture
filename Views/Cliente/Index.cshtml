@@ -56,7 +56,7 @@
                 @foreach (var cliente in Model)
                 {
                     <tr>
-                        <td>@cliente.Id</td>
+                        <td># @cliente.Id</td>
                         <td>@cliente.Nome</td>
                         <td>@(cliente.Telefone?.ToString())</td>
                         <td>@cliente.Email?.ToString()</td>
