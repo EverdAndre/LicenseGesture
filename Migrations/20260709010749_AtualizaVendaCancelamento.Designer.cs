@@ -3,6 +3,7 @@ using System;
 using LicenseGesture.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LicenseGesture.Migrations
 {
     [DbContext(typeof(LicenseDbContext))]
-    partial class LicenseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260709010749_AtualizaVendaCancelamento")]
+    partial class AtualizaVendaCancelamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -114,7 +117,7 @@ namespace LicenseGesture.Migrations
                     b.Property<string>("AnuladaPor")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CanceladaEm")
+                    b.Property<DateTime>("CanceladaEm")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ClienteId")

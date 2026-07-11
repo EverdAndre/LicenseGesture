@@ -1,0 +1,130 @@
+@model LicenseGesture.ViewModels.VendaCreateViewModel
+@using LicenseGesture.Enums
+
+@{
+    ViewData["Title"] = "Nova Venda";
+}
+
+<link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
+
+
+<section class="venda-page">
+    <div class="venda-hero">
+        <div>
+            <span class="venda-kicker">Cadastro de vendas</span>
+            <h1>Nova Venda</h1>
+            <p>Registre cliente, produto, pagamento e período da licença.</p>
+        </div>
+
+        <a class="venda-back-link" asp-controller="Home" asp-action="Index">Voltar para lista</a>
+    </div>
+
+    <form asp-action="Create" method="post" class="venda-form">
+        <div asp-validation-summary="ModelOnly" class="venda-validation"></div>
+
+        <div class="venda-form-grid">
+            <div class="venda-section venda-section-main">
+                <div class="venda-section-header">
+                    <span>01</span>
+                    <div>
+                        <h2>Identificação</h2>
+                        <p>Dados principais da venda.</p>
+                    </div>
+                </div>
+
+                <div class="venda-fields-grid">
+                    <div class="venda-field venda-field-wide">
+                        <label asp-for="ClienteBusca">Cliente</label>
+                        <div class="venda-lookup-row">
+                            <input asp-for="ClienteBusca" placeholder="Ex: Maria Oliveira" autocomplete="off" />
+                            <a class="venda-add-related-button" asp-controller="Cliente" asp-action="Create" aria-label="Cadastrar novo cliente" title="Cadastrar cliente">
+                                <span aria-hidden="true">+</span>
+                            </a>
+                        </div>
+                        <input type="hidden" asp-for="ClienteId" />
+                        <span asp-validation-for="ClienteId"></span>
+                        <div id="clienteResultado" class="autocomplete-list"></div>
+                    </div>
+
+                    <div class="venda-field venda-field-wide">
+                        <label asp-for="ProdutoBusca">Produto</label>
+                        <div class="venda-lookup-row">
+                            <input asp-for="ProdutoBusca" placeholder="Ex: Microsoft 365 Business" autocomplete="off" />
+                            <a class="venda-add-related-button" asp-controller="Produto" asp-action="Create" aria-label="Cadastrar novo produto" title="Cadastrar produto">
+                                <span aria-hidden="true">+</span>
+                            </a>
+                        </div>
+                        <input type="hidden" asp-for="ProdutoId" />
+                        <span asp-validation-for="ProdutoId"></span>
+                        <div id="produtoResultado" class="autocomplete-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="venda-section venda-values-section">
+                <div class="venda-section-header">
+                    <span>02</span>
+                    <div>
+                        <h2>Valores e documento</h2>
+                        <p>Informe valor final, nota fiscal e pagamento.</p>
+                    </div>
+                </div>
+
+                <div class="venda-fields-grid">
+                    <div class="venda-field">
+                        <label asp-for="ValorFinalVenda">Valor final</label>
+                        <input asp-for="ValorFinalVenda" type="number" min="0" step="0.01" placeholder="0,00" />
+                        <span asp-validation-for="ValorFinalVenda"></span>
+                    </div>
+
+                    <div class="venda-field">
+                        <label asp-for="FormaPagamento">Pagamento</label>
+                        <select asp-for="FormaPagamento" asp-items="Html.GetEnumSelectList<FormaPagamento>()">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="FormaPagamento"></span>
+                    </div>
+
+                    <div class="venda-field venda-field-wide">
+                        <label asp-for="NfSaida">NF de saída</label>
+                        <input asp-for="NfSaida" placeholder="Número da nota fiscal" autocomplete="off" />
+                        <span asp-validation-for="NfSaida"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="venda-section venda-dates-section">
+                <div class="venda-section-header">
+                    <span>03</span>
+                    <div>
+                        <h2>Período da licença</h2>
+                        <p>Defina ativação e expiração da venda.</p>
+                    </div>
+                </div>
+
+                <div class="venda-fields-grid">
+                    <div class="venda-field">
+                        <label asp-for="DataAtivacao">Data de ativação</label>
+                        <input asp-for="DataAtivacao" type="date" />
+                        <span asp-validation-for="DataAtivacao"></span>
+                    </div>
+
+                    <div class="venda-field">
+                        <label for="ExpiraEm">Expira em</label>
+                        <input id="ExpiraEm" name="ExpiraEm" type="date" />
+                    </div>
+                </div>
+            </div>
+        <div class="venda-actions">
+            <a class="venda-button venda-button-light" asp-controller="Home" asp-action="Index">Cancelar</a>
+            <button type="submit" class="venda-button venda-button-primary">Cadastrar venda</button>
+        </div>
+    </form>
+</section>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script src="~/js/venda/buscarCliente.js" asp-append-version="true"></script>
+<script src="~/js/venda/buscarProduto.js" asp-append-version="true"></script>

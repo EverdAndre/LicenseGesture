@@ -18,6 +18,8 @@ html {
 }
 
 body {
+  color: #172033;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   margin-bottom: 60px;
 }
 

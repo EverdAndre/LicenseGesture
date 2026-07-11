@@ -2,7 +2,7 @@
 @using LicenseGesture.Enums
 
 @{
-    ViewData["Title"] = "Novo Produto";
+    ViewData["Title"] = "Novo produto";
 }
 
 <link rel="stylesheet" href="~/css/produto.css" asp-append-version="true" />
@@ -11,7 +11,7 @@
     <div class="produto-hero">
         <div>
             <span class="produto-kicker">Cadastro de produto</span>
-            <h1>Novo Produto</h1>
+            <h1>Novo produto</h1>
         </div>
 
         <a class="produto-back-link" asp-action="Index">Voltar para lista</a>
@@ -25,8 +25,8 @@
                 <div class="produto-section-header">
                     <span>01</span>
                     <div>
-                        <h2>Identificacao</h2>
-                        <p>Dados principais da licenca cadastrada.</p>
+                        <h2>Identificação</h2>
+                        <p>Dados principais da licença cadastrada.</p>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
 
                     <div class="produto-field">
                         <label asp-for="Validade"></label>
-                        <input asp-for="Validade" placeholder="Ex: 1 ano ou vitalicia" autocomplete="off" />
+                        <input asp-for="Validade" placeholder="Ex: 1 ano ou vitalícia" autocomplete="off" />
                         <span asp-validation-for="Validade"></span>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
 
                     <div class="produto-field produto-field-wide">
                         <label asp-for="NfEntrada">NF de entrada</label>
-                        <input asp-for="NfEntrada" type= "number" placeholder="Numero da nota fiscal" autocomplete="off" />
+                        <input asp-for="NfEntrada" type= "number" placeholder="Número da nota fiscal" autocomplete="off" />
                         <span asp-validation-for="NfEntrada"></span>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <span>03</span>
                     <div>
                         <h2>Limites de uso</h2>
-                        <p>Defina as quantidades permitidas pela licenca.</p>
+                        <p>Defina as quantidades permitidas pela licença.</p>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="produto-field">
-                        <label asp-for="QuantUsuarios">Usuarios</label>
+                        <label asp-for="QuantUsuarios">Usuários</label>
                         <input asp-for="QuantUsuarios" type="number" min="0" placeholder="0" />
                         <span asp-validation-for="QuantUsuarios"></span>
                     </div>
@@ -118,7 +118,7 @@
                     <span>04</span>
                     <div>
                         <h2>Status</h2>
-                        <p>Controle se o produto esta ativo.</p>
+                        <p>Controle se o produto está ativo.</p>
                     </div>
                 </div>
 
@@ -137,8 +137,7 @@
     </form>
 </section>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }

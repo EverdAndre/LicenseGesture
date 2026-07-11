@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="~/css/cliente.css" asp-append-version="true" />
 
 <div class="cliente-index-header">
-    <a class="cliente-create-button" asp-action="Create" aria-label="Cadastrar Cliente">
+    <a class="cliente-create-button" asp-action="Create" aria-label="Cadastrar cliente">
         <span aria-hidden="true">+</span>
         Cadastrar
     </a>
@@ -19,7 +19,7 @@
     <h1>Clientes cadastrados</h1>
 <div class="cliente-search-form">
    <form asp-action="Index" method="get">
-    <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar Cliente ..." />
+    <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar cliente..." />
     <button type="submit">Buscar</button>
 </form>
 </div>
@@ -40,7 +40,10 @@
                         <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="nome" asp-route-direcao="@ProximaDirecao("nome")">
                             Nome <span class="cliente-sort-icon">@SetaOrdenacao("nome")</span>
                         </a>
-                    <th class="cliente-actions-column">Acoes</th>
+                    </th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th class="cliente-actions-column">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,5 +78,5 @@
 }
 else
 {
-    <p>Nenhum Cliente cadastrado.</p>
+    <p>Nenhum cliente cadastrado.</p>
 }

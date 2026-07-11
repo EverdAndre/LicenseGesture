@@ -19,7 +19,7 @@
     <h1>Produtos cadastrados</h1>
 <div class="produto-search-form">
    <form asp-action="Index" method="get">
-    <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar Produto ..." />
+    <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar produto..." />
     <button type="submit">Buscar</button>
 </form>
 </div>
@@ -51,7 +51,7 @@
                             Validade <span class="produto-sort-icon">@SetaOrdenacao("validade")</span>
                         </a>
                     </th>
-                    <th class="produto-actions-column">Acoes</th>
+                    <th class="produto-actions-column">Ações</th>
                 </tr>
             </thead>
             <tbody>

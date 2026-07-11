@@ -1,8 +1,84 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model IEnumerable<LicenseGesture.Models.Venda>
+
+@{
+    ViewData["Title"] = "Home";
+    var vendas = Model ?? Enumerable.Empty<LicenseGesture.Models.Venda>();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
+
+<section class="venda-index-page">
+    <div class="venda-index-header">
+        <div class="venda-index-title">
+            <span class="venda-kicker">Painel de vendas</span>
+            <h1>Vendas cadastradas</h1>
+            <p>Acompanhe cliente, produto e período de cada licença vendida.</p>
+        </div>
+
+        <div class="venda-index-actions">
+            <form class="venda-search-form" asp-action="Index" method="get">
+                <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar venda por cliente ou produto..." />
+                <button type="submit">Buscar</button>
+            </form>
+
+            <a class="venda-create-button" asp-controller="Venda" asp-action="Create" aria-label="Cadastrar venda">
+                <span aria-hidden="true">+</span>
+                Cadastrar
+            </a>
+        </div>
+    </div>
+
+    @if (vendas.Any())
+    {
+        <div class="venda-table-card">
+            <div class="table-responsive">
+                <table class="table venda-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cliente</th>
+                            <th>Produto</th>
+                            <th>Expira em</th>
+                            <th>Status</th>
+                            <th class="venda-actions-column">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var venda in vendas)
+                        {
+                            var statusClasse = venda.Anulada ? "venda-status-cancelada" : "venda-status-ativa";
+                            var statusTexto = venda.Anulada ? "Cancelada" : "Ativa";
+
+                            <tr>
+                                <td class="venda-id">#@venda.Id</td>
+                                <td><strong>@(venda.Cliente?.Nome ?? $"Cliente #{venda.ClienteId}")</strong></td>
+                                <td>@(venda.Produto?.Nome ?? $"Produto #{venda.ProdutoId}")</td>
+                                <td>@venda.ExpiraEm.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <span class="venda-status @statusClasse">@statusTexto</span>
+                                </td>
+                                <td class="venda-actions-cell">
+                                    <a class="venda-action-button venda-view-button" href="#" data-venda-id="@venda.Id" aria-label="Visualizar venda @venda.Id" title="Visualizar">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                            <path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+                                            <circle cx="12" cy="12" r="2.8" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="venda-empty-state">
+            <span>0</span>
+            <h2>Nenhuma venda cadastrada</h2>
+            <p>Cadastre uma nova venda ou ajuste a busca para encontrar registros existentes.</p>
+            <a class="venda-button venda-button-primary" asp-controller="Venda" asp-action="Create">Cadastrar venda</a>
+        </div>
+    }
+</section>

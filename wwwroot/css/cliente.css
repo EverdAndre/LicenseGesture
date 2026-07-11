@@ -1,14 +1,39 @@
+.cliente-index-header,
+.cliente-page,
+.table-responsive {
+    box-sizing: border-box;
+}
+
+.cliente-index-header *,
+.cliente-page *,
+.table-responsive * {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f4f7fb;
+    color: #172033;
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    padding: 22px 16px 44px;
+}
+
 .cliente-index-header {
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 22px;
+    gap: 12px;
+    margin-bottom: 18px;
+    margin-inline: auto;
+    max-width: 1180px;
+    width: 100%;
 }
 
 .cliente-index-header h1 {
     color: #172033;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
     font-weight: 800;
     margin: 0;
 }
@@ -20,10 +45,11 @@
     box-shadow: 0 10px 22px rgba(31, 122, 118, 0.22);
     color: #fff;
     display: inline-flex;
+    font-size: 0.9rem;
     font-weight: 800;
-    gap: 9px;
-    min-height: 44px;
-    padding: 0 16px;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 14px;
     text-decoration: none;
 }
 
@@ -32,12 +58,12 @@
     background: rgba(255, 255, 255, 0.18);
     border-radius: 50%;
     display: inline-flex;
-    flex: 0 0 24px;
-    font-size: 1.3rem;
-    height: 24px;
+    flex: 0 0 22px;
+    font-size: 1.05rem;
+    height: 22px;
     justify-content: center;
     line-height: 1;
-    width: 24px;
+    width: 22px;
 }
 
 .cliente-create-button:hover {
@@ -64,9 +90,52 @@
     border-radius: 8px;
     color: #172033;
     flex: 1;
+    min-width: 0;
     min-height: 44px;
     outline: none;
     padding: 10px 13px;
+}
+
+.table-responsive {
+    background: #fff;
+    border: 1px solid #dfe6ef;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.07);
+    margin-inline: auto;
+    max-width: 1180px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.table {
+    border-collapse: collapse;
+    margin: 0;
+    min-width: 760px;
+    width: 100%;
+}
+
+.table thead th {
+    background: #f4f8fb;
+    border-bottom: 1px solid #dfe6ef;
+    color: #41516a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 14px 16px;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    border-bottom: 1px solid #edf2f7;
+    color: #334155;
+    padding: 14px 16px;
+    vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: 0;
 }
 
 .cliente-search-form input:focus {
@@ -174,21 +243,24 @@
 
 .cliente-page {
     color: #172033;
+    margin-inline: auto;
+    max-width: 1180px;
     padding: 24px 0 44px;
+    width: 100%;
 }
 
 .cliente-hero {
     align-items: flex-end;
     background: linear-gradient(135deg, #103f5c 0%, #1f7a76 52%, #f2b84b 100%);
     border-radius: 8px;
-    box-shadow: 0 20px 42px rgba(16, 63, 92, 0.18);
+    box-shadow: 0 14px 30px rgba(16, 63, 92, 0.16);
     color: #fff;
     display: flex;
-    gap: 24px;
+    gap: 18px;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     overflow: hidden;
-    padding: 34px;
+    padding: 22px 28px;
     position: relative;
 }
 
@@ -207,18 +279,25 @@
 .cliente-kicker {
     color: #ffe2a3;
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    margin-bottom: 5px;
     text-transform: uppercase;
 }
 
 .cliente-hero h1 {
-    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
     font-weight: 800;
-    line-height: 1.05;
-    margin: 0 0 10px;
+    line-height: 1.08;
+    margin: 0 0 6px;
+}
+
+.cliente-hero p {
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 0.94rem;
+    margin: 0;
+    max-width: 620px;
 }
 
 .cliente-back-link {
@@ -229,9 +308,10 @@
     color: #fff;
     display: inline-flex;
     flex: 0 0 auto;
-    font-weight: 700;
-    min-height: 44px;
-    padding: 0 16px;
+    font-size: 0.9rem;
+    font-weight: 750;
+    min-height: 38px;
+    padding: 0 13px;
     position: relative;
     text-decoration: none;
     z-index: 1;
@@ -295,8 +375,8 @@
 .cliente-section-header {
     align-items: flex-start;
     display: flex;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 14px;
 }
 
 .cliente-section-header > span {
@@ -305,23 +385,23 @@
     border-radius: 8px;
     color: #1f7a76;
     display: inline-flex;
-    flex: 0 0 42px;
-    font-size: 0.88rem;
+    flex: 0 0 34px;
+    font-size: 0.78rem;
     font-weight: 800;
-    height: 42px;
+    height: 34px;
     justify-content: center;
 }
 
 .cliente-section-header h2 {
     color: #172033;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     font-weight: 800;
-    margin: 0 0 4px;
+    margin: 0 0 3px;
 }
 
 .cliente-section-header p {
     color: #64748b;
-    font-size: 0.92rem;
+    font-size: 0.84rem;
     margin: 0;
 }
 
@@ -515,6 +595,26 @@
     background: #d9e2ee;
     color: #172033;
 }
+.cliente-button-danger,
+.cliente-button-danger {
+    background: #dc2626;
+    box-shadow: 0 10px 22px rgba(220, 38, 38, 0.22);
+    color: #fff;
+}
+
+.cliente-button-danger:hover,
+.cliente-button-danger:hover {
+    background: #b91c1c;
+    color: #fff;
+}
+.cliente-section-header > .cliente-alert-icon {
+    background: #facc15;
+    color: #172033;
+    flex-basis: 56px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    height: 56px;
+}
 
 @media (max-width: 900px) {
     .cliente-hero,
@@ -533,9 +633,23 @@
         align-items: flex-start;
         flex-direction: column;
     }
+
+    .cliente-section-main .cliente-fields-grid,
+    .cliente-fields-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cliente-section-main .cliente-field-type,
+    .cliente-section-main .cliente-field-type + .cliente-field {
+        grid-column: auto;
+    }
 }
 
 @media (max-width: 640px) {
+    body {
+        padding: 12px 10px 28px;
+    }
+
     .cliente-page {
         padding-top: 8px;
     }
@@ -543,7 +657,7 @@
     .cliente-hero,
     .cliente-form,
     .cliente-section {
-        padding: 18px;
+        padding: 16px;
     }
 
     .cliente-fields-grid {
@@ -564,7 +678,100 @@
         flex-direction: column;
     }
 
+    .cliente-create-button,
+    .cliente-search-form button {
+        justify-content: center;
+        width: 100%;
+    }
+
     .cliente-button {
         width: 100%;
+    }
+
+    .table-responsive {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    .table {
+        display: block;
+        min-width: 0;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tbody {
+        display: grid;
+        gap: 12px;
+    }
+
+    .table tr {
+        background: #fff;
+        border: 1px solid #dfe6ef;
+        border-radius: 8px;
+        box-shadow: 0 10px 24px rgba(23, 32, 51, 0.07);
+        overflow: hidden;
+    }
+
+    .table tbody td {
+        align-items: flex-start;
+        border-bottom: 1px solid #edf2f7;
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        padding: 12px 14px;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .table tbody td::before {
+        color: #64748b;
+        content: "";
+        flex: 0 0 82px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .table tbody td:nth-child(1)::before {
+        content: "Id";
+    }
+
+    .table tbody td:nth-child(2)::before {
+        content: "Nome";
+    }
+
+    .table tbody td:nth-child(3)::before {
+        content: "Telefone";
+    }
+
+    .table tbody td:nth-child(4)::before {
+        content: "Email";
+    }
+
+    .table tbody td:nth-child(5)::before {
+        content: "Ações";
+    }
+
+    .cliente-actions-column,
+    .cliente-actions-cell {
+        width: 100%;
+    }
+
+    .cliente-actions-cell {
+        display: flex;
+        justify-content: flex-end;
     }
 }

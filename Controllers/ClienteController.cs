@@ -38,13 +38,13 @@ public class ClienteController : Controller
         return View(cliente.ToList());
     }
 
-    // Get: Produto/Create
+    // Get: Cliente/Create
     public IActionResult Create()
     {
         return View(new Cliente { Ativo = true });
     }
 
-    // Post : Produto/Create
+    // Post : Cliente/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(Cliente cliente)
@@ -65,18 +65,18 @@ public class ClienteController : Controller
         }
     }
 
-    // Get : Produto/Edit
+    // Get : Cliente/Edit
     public IActionResult Edit(int Id)
     {
         var cliente = _context.Clientes.Find(Id);
         if (cliente == null)
         {
-            return NotFound();
+            return NotFound("Cliente não encontrado.");
         }
         return View(cliente);
     }
 
-    // Post : Produto/Edit
+    // Post : Cliente/Edit
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(Cliente cliente)
@@ -97,26 +97,26 @@ public class ClienteController : Controller
         }
     }
 
-    // Get : Produto/Delete
+    // Get : Cliente/Delete
     public IActionResult Delete(int Id)
     {
         var cliente = _context.Clientes.Find(Id);
         if (cliente == null)
         {
-            return NotFound();
+            return NotFound("Cliente não encontrado.");
         }
         return View(cliente);
     }
 
-    // Post : Produto/Delete
+    // Post : Cliente/Delete
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult DeleteConfirmed(int id)
+    public IActionResult DeleteConfirmado(int id)
     {
         var clienteBanco = _context.Clientes.Find(id);
         if (clienteBanco == null)
         {
-            return NotFound();
+            return NotFound("Cliente não encontrado.");
         }
         clienteBanco.Ativo = false;
         _context.SaveChanges();
