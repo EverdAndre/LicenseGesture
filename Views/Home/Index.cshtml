@@ -17,7 +17,10 @@
 
         <div class="venda-index-actions">
             <form class="venda-search-form" asp-action="Index" method="get">
-                <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar venda por cliente ou produto..." />
+                <div class="venda-search-autocomplete">
+                    <input id="VendaBusca" type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar venda por cliente ou produto..." autocomplete="off" />
+                    <div id="vendaBuscaResultado" class="autocomplete-list"></div>
+                </div>
                 <button type="submit">Buscar</button>
             </form>
 
@@ -82,3 +85,6 @@
         </div>
     }
 </section>
+
+<script src="~/js/autocomplete.js" asp-append-version="true"></script>
+<script src="~/js/venda/buscarVenda.js" asp-append-version="true"></script>

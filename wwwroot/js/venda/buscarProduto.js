@@ -1,4 +1,4 @@
-configurarAutocompleteVenda({
+configurarAutocomplete({
     campoBuscaId: "ProdutoBusca",
     campoId: "ProdutoId",
     resultadoId: "produtoResultado",

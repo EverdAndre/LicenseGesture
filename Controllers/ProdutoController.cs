@@ -45,15 +45,16 @@ public class ProdutoController : Controller
     }
 
     // Get: Produto/Create
-    public IActionResult Create()
+    public IActionResult Create(string? returnUrl)
     {
+        ViewData["ReturnUrl"]= returnUrl;
         return View();
     }
 
     // Post : Produto/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(Produto produto)
+    public IActionResult Create(Produto produto, string? returnUrl)
     {
         try
         {
@@ -61,12 +62,19 @@ public class ProdutoController : Controller
             {
                 _context.Produtos.Add(produto);
                 _context.SaveChanges();
+
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return LocalRedirect(returnUrl);
+                }
                 return RedirectToAction("Index");
             }
+            ViewData["ReturnUrl"]= returnUrl;
             return View(produto);
         }
         catch
         {
+            ViewData["ReturnUrl"]= returnUrl;
             return View(produto);
         }
     }

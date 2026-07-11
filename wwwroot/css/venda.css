@@ -116,13 +116,15 @@ body {
     gap: 18px;
     justify-content: space-between;
     margin-bottom: 18px;
-    overflow: hidden;
+    overflow: visible;
     padding: 22px 30px;
     position: relative;
+    z-index: 2;
 }
 
 .venda-index-header::after {
     background: #f2b84b;
+    border-radius: 0 8px 8px 0;
     content: "";
     height: 100%;
     opacity: 0.9;
@@ -169,6 +171,15 @@ body {
     margin: 0;
     min-width: 280px;
     width: min(100%, 390px);
+}
+
+.venda-search-autocomplete {
+    flex: 1;
+    position: relative;
+}
+
+.venda-search-autocomplete input {
+    width: 100%;
 }
 
 .venda-search-form input {
@@ -252,7 +263,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 12px 30px rgba(23, 32, 51, 0.07);
     overflow: hidden;
+    position: relative;
     width: 100%;
+    z-index: 1;
 }
 
 .venda-table-card .table-responsive {
@@ -263,8 +276,36 @@ body {
 .venda-table {
     margin: 0;
     min-width: 860px;
+    table-layout: fixed;
     width: 100%;
     vertical-align: middle;
+}
+
+.venda-table th:nth-child(1),
+.venda-table td:nth-child(1) {
+    width: 8%;
+}
+
+.venda-table th:nth-child(2),
+.venda-table td:nth-child(2),
+.venda-table th:nth-child(3),
+.venda-table td:nth-child(3) {
+    width: 26%;
+}
+
+.venda-table th:nth-child(4),
+.venda-table td:nth-child(4) {
+    width: 16%;
+}
+
+.venda-table th:nth-child(5),
+.venda-table td:nth-child(5) {
+    width: 14%;
+}
+
+.venda-table th:nth-child(6),
+.venda-table td:nth-child(6) {
+    width: 10%;
 }
 
 .venda-table thead th {
@@ -283,7 +324,14 @@ body {
     border-bottom: 1px solid #edf2f7;
     color: #334155;
     padding: 15px 16px;
+    vertical-align: middle;
     white-space: nowrap;
+}
+
+.venda-table tbody td:nth-child(2),
+.venda-table tbody td:nth-child(3) {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .venda-table tbody tr:last-child td {
@@ -331,10 +379,7 @@ body {
 }
 
 .venda-actions-cell {
-    align-items: center;
-    display: flex;
-    gap: 8px;
-    justify-content: center;
+    vertical-align: middle;
 }
 
 .venda-action-button {
@@ -803,7 +848,10 @@ body {
         display: flex;
         gap: 12px;
         justify-content: space-between;
+        overflow: visible;
         padding: 12px 14px;
+        text-overflow: clip;
+        width: 100%;
         white-space: normal;
         word-break: break-word;
     }

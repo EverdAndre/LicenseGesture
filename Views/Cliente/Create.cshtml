@@ -19,6 +19,9 @@
 
     <form asp-action="Create" method="post" class="cliente-form">
         <div asp-validation-summary="ModelOnly" class="cliente-validation"></div>
+        <input type="hidden"
+        name="returnUrl"
+        value="@ViewData["ReturnUrl"]" />
 
         <div class="cliente-form-grid">
             <div class="cliente-section cliente-section-main">

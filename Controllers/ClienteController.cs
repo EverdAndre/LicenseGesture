@@ -39,15 +39,16 @@ public class ClienteController : Controller
     }
 
     // Get: Cliente/Create
-    public IActionResult Create()
+    public IActionResult Create(string? returnUrl)
     {
+        ViewData["ReturnUrl"] = returnUrl;
         return View(new Cliente { Ativo = true });
     }
 
     // Post : Cliente/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(Cliente cliente)
+    public IActionResult Create(Cliente cliente, string? returnUrl)
     {
         try
         {
@@ -55,12 +56,18 @@ public class ClienteController : Controller
             {
                 _context.Clientes.Add(cliente);
                 _context.SaveChanges();
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return LocalRedirect(returnUrl);
+                }
                 return RedirectToAction("Index");
             }
+            ViewData["ReturnUrl"]= returnUrl;
             return View(cliente);
         }
         catch
         {
+            ViewData["ReturnUrl"]= returnUrl;
             return View(cliente);
         }
     }

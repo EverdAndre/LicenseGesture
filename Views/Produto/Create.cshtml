@@ -14,12 +14,17 @@
             <h1>Novo produto</h1>
         </div>
 
-        <a class="produto-back-link" asp-action="Index">Voltar para lista</a>
+        <div class="produto-hero-actions">
+            <a class="venda-link" asp-action="Create" asp-controller="Venda">Venda</a>
+            <a class="produto-back-link" asp-action="Index">Voltar para lista</a>
+        </div>
     </div>
 
     <form asp-action="Create" method="post" class="produto-form">
         <div asp-validation-summary="ModelOnly" class="produto-validation"></div>
-
+        <input type="hidden"
+        name="returnUrl"
+        value="@ViewData["ReturnUrl"]" />
         <div class="produto-form-grid">
             <div class="produto-section produto-section-main">
                 <div class="produto-section-header">

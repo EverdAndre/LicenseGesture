@@ -37,7 +37,12 @@
                         <label asp-for="ClienteBusca">Cliente</label>
                         <div class="venda-lookup-row">
                             <input asp-for="ClienteBusca" placeholder="Ex: Maria Oliveira" autocomplete="off" />
-                            <a class="venda-add-related-button" asp-controller="Cliente" asp-action="Create" aria-label="Cadastrar novo cliente" title="Cadastrar cliente">
+                            <a class="venda-add-related-button"
+                            asp-controller="Cliente"
+                            asp-action="Create"
+                            asp-route-returnUrl="@Url.Action("Create", "Venda")"
+                            aria-label="Cadastrar novo cliente"
+                            title="Cadastrar cliente">
                                 <span aria-hidden="true">+</span>
                             </a>
                         </div>
@@ -50,7 +55,12 @@
                         <label asp-for="ProdutoBusca">Produto</label>
                         <div class="venda-lookup-row">
                             <input asp-for="ProdutoBusca" placeholder="Ex: Microsoft 365 Business" autocomplete="off" />
-                            <a class="venda-add-related-button" asp-controller="Produto" asp-action="Create" aria-label="Cadastrar novo produto" title="Cadastrar produto">
+                            <a class="venda-add-related-button"
+                            asp-controller="Produto"
+                            asp-action="Create"
+                            asp-route-returnUrl="@Url.Action("Create", "Venda")"
+                            aria-label="Cadastrar novo produto"
+                            title="Cadastrar produto">
                                 <span aria-hidden="true">+</span>
                             </a>
                         </div>
@@ -126,5 +136,6 @@
 @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }
+<script src="~/js/autocomplete.js" asp-append-version="true"></script>
 <script src="~/js/venda/buscarCliente.js" asp-append-version="true"></script>
 <script src="~/js/venda/buscarProduto.js" asp-append-version="true"></script>
