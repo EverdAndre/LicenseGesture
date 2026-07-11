@@ -1,0 +1,28 @@
+@model LicenseGesture.Models.Cliente;
+
+@{
+    ViewData["Title"] = "Excluir cliente";
+}
+
+<link rel="stylesheet" href="~/css/cliente.css" asp-append-version="true" />
+
+<section class="cliente-page">
+    <div class="cliente-section">
+        <div class="cliente-section-header">
+            <span class="cliente-alert-icon">!</span>
+            <div>
+                <h2>Deseja excluir este cliente?</h2>
+                <p>@Model.Nome</p>
+            </div>
+        </div>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="cliente-actions">
+                <a class="cliente-button cliente-button-light" asp-action="Index">Não</a>
+                <button type="submit" class="cliente-button cliente-button-danger">Sim</button>
+            </div>
+        </form>
+    </div>
+</section>

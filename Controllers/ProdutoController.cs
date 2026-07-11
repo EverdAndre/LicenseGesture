@@ -2,6 +2,7 @@ using System.Data.Common;
 using LicenseGesture.Context;
 using LicenseGesture.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 public class ProdutoController : Controller
@@ -14,23 +15,46 @@ public class ProdutoController : Controller
     }
 
     //retorna lista de produtos do bd
-    public IActionResult Index()
+    public IActionResult Index(string? busca, string? ordenarPor, string? direcao)
     {
-        var produtos = _context.Produtos.Where(p => p.Ativo).ToList();
+        var query = _context.Produtos.Where(p => p.Ativo).AsQueryable();
+        ordenarPor = string.IsNullOrWhiteSpace(ordenarPor) ? "id" : ordenarPor;
+        direcao = direcao == "desc" ? "desc" : "asc";
+
+        if (!string.IsNullOrWhiteSpace(busca))
+        {
+            query = query.Where(p => p.Nome.Contains(busca));
+        }
+        var produtos = query.ToList();
+        produtos = (ordenarPor, direcao) switch
+        {
+            ("id", "desc") => produtos.OrderByDescending(p => p.Id).ToList(),
+            ("nome", "desc") => produtos.OrderByDescending(p => p.Nome).ToList(),
+            ("valor", "desc") => produtos.OrderByDescending(p => p.ValorVenda ?? 0).ToList(),
+            ("validade", "desc") => produtos.OrderByDescending(p => p.Validade).ToList(),
+            ("nome", _) => produtos.OrderBy(p => p.Nome).ToList(),
+            ("valor", _) => produtos.OrderBy(p => p.ValorVenda ?? 0).ToList(),
+            ("validade", _) => produtos.OrderBy(p => p.Validade).ToList(),
+            _ => produtos.OrderBy(p => p.Id).ToList(),
+        };
+        ViewData["BuscaAtual"] = busca;
+        ViewData["OrdenacaoAtual"] = ordenarPor;
+        ViewData["DirecaoAtual"] = direcao;
 
         return View(produtos);
     }
 
     // Get: Produto/Create
-    public IActionResult Create()
+    public IActionResult Create(string? returnUrl)
     {
+        ViewData["ReturnUrl"]= returnUrl;
         return View();
     }
 
     // Post : Produto/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(Produto produto)
+    public IActionResult Create(Produto produto, string? returnUrl)
     {
         try
         {
@@ -38,12 +62,19 @@ public class ProdutoController : Controller
             {
                 _context.Produtos.Add(produto);
                 _context.SaveChanges();
+
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return LocalRedirect(returnUrl);
+                }
                 return RedirectToAction("Index");
             }
+            ViewData["ReturnUrl"]= returnUrl;
             return View(produto);
         }
         catch
         {
+            ViewData["ReturnUrl"]= returnUrl;
             return View(produto);
         }
     }
@@ -78,5 +109,31 @@ public class ProdutoController : Controller
         {
             return View();
         }
+    }
+
+    // Get : Produto/Delete
+    public IActionResult Delete(int Id)
+    {
+        var produto = _context.Produtos.Find(Id);
+        if (produto == null)
+        {
+            return NotFound();
+        }
+        return View(produto);
+    }
+
+    // Post : Produto/Delete
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var produtoBanco = _context.Produtos.Find(id);
+        if (produtoBanco == null)
+        {
+            return NotFound();
+        }
+        produtoBanco.Ativo = false;
+        _context.SaveChanges();
+        return RedirectToAction("Index");
     }
 }

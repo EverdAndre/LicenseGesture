@@ -18,7 +18,11 @@ public class Venda
     public Produto Produto { get; set; } = null!;
     public decimal? ValorFinalVenda { get; set; }
     public string? NfSaida { get; set; }
-    public string? FormaPagamento { get; set; }
+    public FormaPagamento? FormaPagamento { get; set; }
+    public bool Anulada { get; set; } = false;
+    public string? MotivoCancelamento {get; set;}
+    public string? AnuladaPor {get; set;}
+    public DateTime? CanceladaEm { get; set; } = DateTime.Now;
     public DateTime CriadoEm { get; set; } = DateTime.Now;
     public DateOnly? DataAtivacao { get; set; }
     public DateOnly ExpiraEm { get; set; }

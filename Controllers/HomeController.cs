@@ -1,31 +1,47 @@
-using System.Diagnostics;
+using LicenseGesture.Context;
 using Microsoft.AspNetCore.Mvc;
-using LicenseGesture.Models;
-
-namespace LicenseGesture.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly LicenseDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(LicenseDbContext context)
     {
-        _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Index()
+    //retorna lista de vendas do bd
+    public IActionResult Index(string? busca, string? ordenarPor, string? direcao)
     {
-        return View();
-    }
+        var query = _context.Vendas.Include(p => p.Cliente).Include(p => p.Produto).AsQueryable();
+        ordenarPor = string.IsNullOrWhiteSpace(ordenarPor) ? "id" : ordenarPor;
+        direcao = direcao == "desc" ? "desc" : "asc";
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        if (!string.IsNullOrWhiteSpace(busca))
+        {
+            query = query.Where(p =>
+                p.Cliente.Nome.Contains(busca) || p.Produto.Nome.Contains(busca)
+            );
+        }
+        var vendas = query.ToList();
+        vendas = (ordenarPor, direcao) switch
+        {
+            ("id", "desc") => vendas.OrderByDescending(p => p.Id).ToList(),
+            ("cliente", "desc") => vendas.OrderByDescending(p => p.Cliente.Nome).ToList(),
+            ("produto", "desc") => vendas.OrderByDescending(p => p.Produto.Nome).ToList(),
+            ("valor", "desc") => vendas.OrderByDescending(p => p.ValorFinalVenda ?? 0).ToList(),
+            ("validade", "desc") => vendas.OrderByDescending(p => p.ExpiraEm).ToList(),
+            ("cliente", _) => vendas.OrderBy(p => p.Cliente.Nome).ToList(),
+            ("produto", _) => vendas.OrderBy(p => p.Produto.Nome).ToList(),
+            ("valor", _) => vendas.OrderBy(p => p.ValorFinalVenda ?? 0).ToList(),
+            ("validade", _) => vendas.OrderBy(p => p.ExpiraEm).ToList(),
+            _ => vendas.OrderBy(p => p.Id).ToList(),
+        };
+        ViewData["BuscaAtual"] = busca;
+        ViewData["OrdenacaoAtual"] = ordenarPor;
+        ViewData["DirecaoAtual"] = direcao;
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(vendas);
     }
 }

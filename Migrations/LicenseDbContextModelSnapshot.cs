@@ -85,7 +85,7 @@ namespace LicenseGesture.Migrations
                     b.Property<int?>("QuantUsuarios")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TipoProduto")
+                    b.Property<int?>("TipoProduto")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Validade")
@@ -108,6 +108,15 @@ namespace LicenseGesture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("Anulada")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AnuladaPor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("CanceladaEm")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
@@ -120,7 +129,10 @@ namespace LicenseGesture.Migrations
                     b.Property<DateOnly>("ExpiraEm")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FormaPagamento")
+                    b.Property<int?>("FormaPagamento")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("MotivoCancelamento")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NfSaida")

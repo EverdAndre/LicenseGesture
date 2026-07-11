@@ -1,0 +1,28 @@
+@model LicenseGesture.Models.Produto
+
+@{
+    ViewData["Title"] = "Excluir produto";
+}
+
+<link rel="stylesheet" href="~/css/produto.css" asp-append-version="true" />
+
+<section class="produto-page">
+    <div class="produto-section">
+        <div class="produto-section-header">
+            <span class="produto-alert-icon">!</span>
+            <div>
+                <h2>Deseja excluir este produto?</h2>
+                <p>@Model.Nome</p>
+            </div>
+        </div>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="produto-actions">
+                <a class="produto-button produto-button-light" asp-action="Index">Não</a>
+                <button type="submit" class="produto-button produto-button-danger">Sim</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,120 @@
+@model LicenseGesture.Models.Cliente
+@using LicenseGesture.Enums
+
+@{
+    ViewData["Title"] = "Editar cliente";
+}
+
+<link rel="stylesheet" href="~/css/cliente.css" asp-append-version="true" />
+
+<section class="cliente-page">
+    <div class="cliente-hero">
+        <div>
+            <span class="cliente-kicker">Edição de cliente</span>
+            <h1>Editar cliente</h1>
+            <p>@Model.Nome</p>
+        </div>
+
+        <a class="cliente-back-link" asp-action="Index">Voltar para lista</a>
+    </div>
+
+    <form asp-action="Edit" method="post" class="cliente-form">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="cliente-validation"></div>
+
+        <div class="cliente-form-grid">
+            <div class="cliente-section cliente-section-main">
+                <div class="cliente-section-header">
+                    <span>01</span>
+                    <div>
+                        <h2>Identificação</h2>
+                        <p>Dados do cliente cadastrado.</p>
+                    </div>
+                </div>
+                <div class="cliente-fields-grid">
+                    <div class="cliente-field cliente-field-wide">
+                        <label asp-for="Nome"></label>
+                        <input asp-for="Nome" placeholder="Ex: Fulano da Silva" autocomplete="off" />
+                        <span asp-validation-for="Nome"></span>
+                    </div>
+                <div class="cliente-field">
+                        <label asp-for="Cpf"></label>
+                        <input asp-for="Cpf" placeholder="XXX.XXX.XXX-XX" autocomplete="off" />
+                        <span asp-validation-for="Cpf"></span>
+                    </div>
+
+                    <div class="cliente-field">
+                        <label asp-for="Cnpj"></label>
+                        <input asp-for="Cnpj" placeholder="XX.XXX.XXX/XXXX-XX" autocomplete="off" />
+                        <span asp-validation-for="Cnpj"></span>
+                    </div>
+
+                    <div class="cliente-field cliente-field-type">
+                        <label asp-for="TipoPessoa">Tipo de pessoa</label>
+                        <select asp-for="TipoPessoa" asp-items="Html.GetEnumSelectList<TipoPessoa>()">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="TipoPessoa"></span>
+                    </div>
+
+                    <div class="cliente-field">
+                        <label asp-for="Endereco">Endereço</label>
+                        <input asp-for="Endereco" placeholder="Rua, número, bairro, cidade, estado" autocomplete="off" />
+                        <span asp-validation-for="Endereco"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cliente-section cliente-contact-section">
+                <div class="cliente-section-header">
+                    <span>02</span>
+                    <div>
+                        <h2>Contato</h2>
+                        <p>Canais para falar com o cliente.</p>
+                    </div>
+                </div>
+
+                <div class="cliente-fields-grid">
+                    <div class="cliente-field">
+                        <label asp-for="Telefone"></label>
+                        <input asp-for="Telefone" placeholder="(00) 00000-0000" autocomplete="off" />
+                        <span asp-validation-for="Telefone"></span>
+                    </div>
+
+                    <div class="cliente-field">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" type="email" placeholder="cliente@email.com" autocomplete="off" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+
+                </div>
+            </div>
+            <aside class="cliente-section cliente-status-panel">
+                <div class="cliente-section-header">
+                    <span>03</span>
+                    <div>
+                        <h2>Status</h2>
+                        <p>Controle se o cliente está ativo.</p>
+                    </div>
+                </div>
+
+                <label class="cliente-switch">
+                    <input asp-for="Ativo" />
+                    <span></span>
+                    <strong>Cliente ativo</strong>
+                </label>
+            </aside>
+        </div>
+
+        <div class="cliente-actions">
+            <a class="cliente-button cliente-button-danger" asp-action="Delete" asp-route-id="@Model.Id">Excluir</a>
+            <a class="cliente-button cliente-button-light" asp-action="Index">Cancelar</a>
+            <button type="submit" class="cliente-button cliente-button-primary">Salvar</button>
+        </div>
+    </form>
+</section>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
