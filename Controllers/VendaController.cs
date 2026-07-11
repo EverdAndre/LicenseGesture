@@ -2,6 +2,7 @@ using LicenseGesture.Context;
 using LicenseGesture.Models;
 using LicenseGesture.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 public class VendaController : Controller
 {
@@ -95,5 +96,20 @@ public class VendaController : Controller
         }
 
         return View(viewModel);
+    }
+
+    // Get : Venda/Details
+    public IActionResult Details(int Id)
+    {
+        var venda = _context
+            .Vendas.Include(v => v.Cliente)
+            .Include(v => v.Produto)
+            .FirstOrDefault(v => v.Id == Id);
+
+        if (venda == null)
+        {
+            return NotFound("Venda não encontrado.");
+        }
+        return View(venda);
     }
 }

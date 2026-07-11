@@ -488,6 +488,102 @@ body {
     max-width: 520px;
 }
 
+.venda-details-summary {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dfe6ef;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.07);
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr 1fr auto;
+    margin-bottom: 18px;
+    padding: 18px 22px;
+}
+
+.venda-details-summary > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.venda-details-summary strong {
+    color: #172033;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.venda-details-label,
+.venda-details-list dt {
+    color: #64748b;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.venda-details-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.venda-details-card {
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.06);
+}
+
+.venda-details-period,
+.venda-details-cancellation {
+    grid-column: 1 / -1;
+}
+
+.venda-details-list {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+}
+
+.venda-details-list > div {
+    background: #f7f9fc;
+    border: 1px solid #e8edf4;
+    border-radius: 8px;
+    min-width: 0;
+    padding: 13px 15px;
+}
+
+.venda-details-list dt {
+    margin-bottom: 6px;
+}
+
+.venda-details-list dd {
+    color: #253449;
+    font-size: 0.96rem;
+    font-weight: 700;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.venda-details-list-wide {
+    grid-column: 1 / -1;
+}
+
+.venda-details-price {
+    color: #17645f !important;
+    font-size: 1.08rem !important;
+}
+
+.venda-details-cancellation {
+    border-color: #fecdd3;
+}
+
+.venda-details-cancellation .venda-section-header > span {
+    background: #fff1f2;
+    color: #be123c;
+}
+
 .venda-form {
     background: #f7f9fc;
     border: 1px solid #dfe6ef;
@@ -752,6 +848,38 @@ body {
     color: #64748b;
     cursor: default;
 }
+.venda-hero-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 10px;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+}
+
+.venda-hero-actions .venda-link,
+.venda-hero-actions .produto-back-link {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    color: #fff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 0.9rem;
+    font-weight: 750;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 13px;
+    text-decoration: none;
+}
+
+.venda-hero-actions .venda-link:hover,
+.venda-hero-actions .produto-back-link:hover {
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff;
+}
 
 @media (max-width: 900px) {
     .venda-hero,
@@ -773,6 +901,10 @@ body {
         flex-direction: column;
     }
 
+    .venda-hero-actions {
+        justify-content: flex-start;
+    }
+
     .venda-index-header {
         align-items: flex-start;
         flex-direction: column;
@@ -788,6 +920,15 @@ body {
     .venda-search-form {
         min-width: 0;
         width: 100%;
+    }
+
+    .venda-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .venda-details-period,
+    .venda-details-cancellation {
+        grid-column: auto;
     }
 }
 
@@ -808,8 +949,36 @@ body {
         padding: 16px;
     }
 
+    .venda-hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .venda-hero-actions .venda-link,
+    .venda-hero-actions .produto-back-link {
+        width: 100%;
+    }
+
     .venda-fields-grid {
         grid-template-columns: 1fr;
+    }
+
+    .venda-details-summary,
+    .venda-details-list {
+        grid-template-columns: 1fr;
+    }
+
+    .venda-details-summary {
+        padding: 16px;
+    }
+
+    .venda-details-summary strong {
+        white-space: normal;
+    }
+
+    .venda-details-list-wide {
+        grid-column: auto;
     }
 
     .venda-search-form {
