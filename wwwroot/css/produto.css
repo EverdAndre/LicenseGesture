@@ -4,6 +4,122 @@
     box-sizing: border-box;
 }
 
+/* Padrao visual das listagens */
+body {
+    padding: 0;
+}
+
+.produto-page,
+.produto-index-header,
+.table-responsive {
+    width: min(100% - 32px, 1180px);
+}
+
+.produto-index-header {
+    align-items: flex-end;
+    background: #123548;
+    border-radius: 8px;
+    box-shadow: 0 14px 30px rgba(18, 53, 72, 0.16);
+    color: #fff;
+    flex-direction: row;
+    gap: 24px;
+    justify-content: space-between;
+    margin-top: 24px;
+    overflow: visible;
+    padding: 22px 30px;
+    position: relative;
+}
+
+.produto-index-header::after {
+    background: #f2b84b;
+    border-radius: 0 8px 8px 0;
+    content: "";
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10px;
+}
+
+.produto-index-title,
+.produto-index-actions {
+    position: relative;
+    z-index: 1;
+}
+
+.produto-index-header h1 {
+    color: #fff;
+    margin: 0 0 6px;
+}
+
+.produto-index-header p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.94rem;
+    margin: 0;
+}
+
+.produto-index-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 1 590px;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.produto-search-form {
+    max-width: 410px;
+}
+
+.produto-search-form input {
+    background: #fff;
+    min-height: 40px;
+}
+
+.produto-search-form button,
+.produto-create-button {
+    min-height: 40px;
+}
+
+.produto-create-button {
+    background: #fff;
+    box-shadow: none;
+    color: #123548;
+    flex: 0 0 auto;
+}
+
+.produto-create-button:hover {
+    background: #f7fbff;
+    color: #123548;
+}
+
+@media (max-width: 900px) {
+    .produto-index-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .produto-index-actions {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .produto-index-actions,
+    .produto-search-form form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .produto-create-button,
+    .produto-search-form,
+    .produto-search-form button {
+        justify-content: center;
+        max-width: none;
+        width: 100%;
+    }
+}
+
 .produto-index-header *,
 .produto-page *,
 .table-responsive * {
@@ -57,6 +173,7 @@ body {
     font-weight: 800;
     gap: 8px;
     min-height: 40px;
+    margin-left: 0;
     padding: 0 14px;
     text-decoration: none;
 }
@@ -776,3 +893,19 @@ body {
         justify-content: flex-end;
     }
 }
+
+body { padding: 0; }
+.produto-page, .produto-index-header, .table-responsive { width: min(100% - 32px, 1180px); }
+.produto-index-header { align-items: flex-end; background: #123548; border-radius: 8px; box-shadow: 0 14px 30px rgba(18, 53, 72, .16); color: #fff; flex-direction: row; gap: 24px; justify-content: space-between; margin-top: 24px; overflow: visible; padding: 22px 30px; position: relative; }
+.produto-index-header::after { background: #f2b84b; border-radius: 0 8px 8px 0; content: ""; height: 100%; position: absolute; right: 0; top: 0; width: 10px; }
+.produto-index-title, .produto-index-actions { position: relative; z-index: 1; }
+.produto-index-header h1 { color: #fff; margin: 0 0 6px; }
+.produto-index-header p { color: rgba(255,255,255,.78); font-size: .94rem; margin: 0; }
+.produto-index-actions { align-items: center; display: flex; flex: 0 1 590px; gap: 10px; justify-content: flex-end; }
+.produto-search-form { max-width: 410px; }
+.produto-search-form input { background: #fff; min-height: 40px; }
+.produto-search-form button, .produto-create-button { min-height: 40px; }
+.produto-create-button { background: #fff; box-shadow: none; color: #123548; flex: 0 0 auto; margin-left: 0; }
+.produto-create-button:hover { background: #f7fbff; color: #123548; }
+@media (max-width: 900px) { .produto-index-header { align-items: stretch; flex-direction: column; } .produto-index-actions { flex: none; width: 100%; } }
+@media (max-width: 640px) { .produto-index-actions, .produto-search-form form { align-items: stretch; flex-direction: column; } .produto-create-button, .produto-search-form, .produto-search-form button { justify-content: center; max-width: none; width: 100%; } }

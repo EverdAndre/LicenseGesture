@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - LicenseGesture</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <button type="button" id="menuButton" class="menu-button" aria-label="Abrir menu" aria-controls="menuLateral" aria-expanded="false">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+            <a class="site-brand" asp-controller="Home" asp-action="Index">LicenseGesture</a>
+        </div>
+    </header>
+
+    <div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
+
+    <nav id="menuLateral" class="menu-lateral" aria-label="Navegação principal" aria-hidden="true">
+        <div class="menu-lateral-header">
+            <strong>LicenseGesture</strong>
+            <button type="button" id="menuCloseButton" class="menu-close-button" aria-label="Fechar menu">&times;</button>
+        </div>
+
+        <a asp-controller="Home" asp-action="Index">Vendas</a>
+        <a asp-controller="Cliente" asp-action="Index">Clientes</a>
+        <a asp-controller="Produto" asp-action="Index">Produtos</a>
+    </nav>
+
+    <main class="site-content">
+        @RenderBody()
+    </main>
+
+    <script src="~/js/menu.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

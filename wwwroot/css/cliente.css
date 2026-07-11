@@ -4,6 +4,122 @@
     box-sizing: border-box;
 }
 
+/* Padrao visual das listagens */
+body {
+    padding: 0;
+}
+
+.cliente-page,
+.cliente-index-header,
+.table-responsive {
+    width: min(100% - 32px, 1180px);
+}
+
+.cliente-index-header {
+    align-items: flex-end;
+    background: #123548;
+    border-radius: 8px;
+    box-shadow: 0 14px 30px rgba(18, 53, 72, 0.16);
+    color: #fff;
+    flex-direction: row;
+    gap: 24px;
+    justify-content: space-between;
+    margin-top: 24px;
+    overflow: visible;
+    padding: 22px 30px;
+    position: relative;
+}
+
+.cliente-index-header::after {
+    background: #f2b84b;
+    border-radius: 0 8px 8px 0;
+    content: "";
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10px;
+}
+
+.cliente-index-title,
+.cliente-index-actions {
+    position: relative;
+    z-index: 1;
+}
+
+.cliente-index-header h1 {
+    color: #fff;
+    margin: 0 0 6px;
+}
+
+.cliente-index-header p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.94rem;
+    margin: 0;
+}
+
+.cliente-index-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 1 590px;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.cliente-search-form {
+    max-width: 410px;
+}
+
+.cliente-search-form input {
+    background: #fff;
+    min-height: 40px;
+}
+
+.cliente-search-form button,
+.cliente-create-button {
+    min-height: 40px;
+}
+
+.cliente-create-button {
+    background: #fff;
+    box-shadow: none;
+    color: #123548;
+    flex: 0 0 auto;
+}
+
+.cliente-create-button:hover {
+    background: #f7fbff;
+    color: #123548;
+}
+
+@media (max-width: 900px) {
+    .cliente-index-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cliente-index-actions {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .cliente-index-actions,
+    .cliente-search-form form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cliente-create-button,
+    .cliente-search-form,
+    .cliente-search-form button {
+        justify-content: center;
+        max-width: none;
+        width: 100%;
+    }
+}
+
 .cliente-index-header *,
 .cliente-page *,
 .table-responsive * {
@@ -49,6 +165,7 @@ body {
     font-weight: 800;
     gap: 8px;
     min-height: 40px;
+    margin-left: 0;
     padding: 0 14px;
     text-decoration: none;
 }
@@ -300,7 +417,17 @@ body {
     max-width: 620px;
 }
 
-.cliente-back-link {
+.cliente-hero-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.cliente-back-link,
+.venda-link {
     align-items: center;
     background: rgba(255, 255, 255, 0.16);
     border: 1px solid rgba(255, 255, 255, 0.28);
@@ -317,7 +444,8 @@ body {
     z-index: 1;
 }
 
-.cliente-back-link:hover {
+.cliente-back-link:hover,
+.venda-link:hover {
     background: rgba(255, 255, 255, 0.24);
     color: #fff;
 }
@@ -634,6 +762,10 @@ body {
         flex-direction: column;
     }
 
+    .cliente-hero-actions {
+        flex-wrap: nowrap;
+    }
+
     .cliente-section-main .cliente-fields-grid,
     .cliente-fields-grid {
         grid-template-columns: 1fr;
@@ -775,3 +907,19 @@ body {
         justify-content: flex-end;
     }
 }
+
+body { padding: 0; }
+.cliente-page, .cliente-index-header, .table-responsive { width: min(100% - 32px, 1180px); }
+.cliente-index-header { align-items: flex-end; background: #123548; border-radius: 8px; box-shadow: 0 14px 30px rgba(18, 53, 72, .16); color: #fff; flex-direction: row; gap: 24px; justify-content: space-between; margin-top: 24px; overflow: visible; padding: 22px 30px; position: relative; }
+.cliente-index-header::after { background: #f2b84b; border-radius: 0 8px 8px 0; content: ""; height: 100%; position: absolute; right: 0; top: 0; width: 10px; }
+.cliente-index-title, .cliente-index-actions { position: relative; z-index: 1; }
+.cliente-index-header h1 { color: #fff; margin: 0 0 6px; }
+.cliente-index-header p { color: rgba(255,255,255,.78); font-size: .94rem; margin: 0; }
+.cliente-index-actions { align-items: center; display: flex; flex: 0 1 590px; gap: 10px; justify-content: flex-end; }
+.cliente-search-form { max-width: 410px; }
+.cliente-search-form input { background: #fff; min-height: 40px; }
+.cliente-search-form button, .cliente-create-button { min-height: 40px; }
+.cliente-create-button { background: #fff; box-shadow: none; color: #123548; flex: 0 0 auto; margin-left: 0; }
+.cliente-create-button:hover { background: #f7fbff; color: #123548; }
+@media (max-width: 900px) { .cliente-index-header { align-items: stretch; flex-direction: column; } .cliente-index-actions { flex: none; width: 100%; } }
+@media (max-width: 640px) { .cliente-index-actions, .cliente-search-form form { align-items: stretch; flex-direction: column; } .cliente-create-button, .cliente-search-form, .cliente-search-form button { justify-content: center; max-width: none; width: 100%; } }

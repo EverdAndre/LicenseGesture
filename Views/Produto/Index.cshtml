@@ -11,18 +11,24 @@
 <link rel="stylesheet" href="~/css/produto.css" asp-append-version="true" />
 
 <div class="produto-index-header">
-    <a class="produto-create-button" asp-action="Create" aria-label="Cadastrar produto">
-        <span aria-hidden="true">+</span>
-        Cadastrar
-    </a>
+    <div class="produto-index-title">
+        <span class="produto-kicker">Catálogo de produtos</span>
+        <h1>Produtos cadastrados</h1>
+    </div>
 
-    <h1>Produtos cadastrados</h1>
-<div class="produto-search-form">
-   <form asp-action="Index" method="get">
-    <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar produto..." />
-    <button type="submit">Buscar</button>
-</form>
-</div>
+    <div class="produto-index-actions">
+        <div class="produto-search-form">
+            <form asp-action="Index" method="get">
+                <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar produto..." />
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <a class="produto-create-button" asp-action="Create" aria-label="Cadastrar produto">
+            <span aria-hidden="true">+</span>
+            Cadastrar
+        </a>
+    </div>
 </div>
 
 @if (Model.Any())

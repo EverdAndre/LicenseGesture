@@ -13,8 +13,10 @@
             <span class="cliente-kicker">Cadastro de cliente</span>
             <h1>Novo cliente</h1>
         </div>
-
-        <a class="cliente-back-link" asp-action="Index">Voltar para lista</a>
+        <div class="cliente-hero-actions">
+            <a class="venda-link" asp-action="Create" asp-controller="Venda">Venda</a>
+            <a class="cliente-back-link" asp-action="Index">Voltar para lista</a>
+        </div>
     </div>
 
     <form asp-action="Create" method="post" class="cliente-form">
