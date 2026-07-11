@@ -54,9 +54,20 @@ public class VendaController : Controller
     }
 
     // Get : Venda/Create
-    public IActionResult Create()
+    public IActionResult Create(int? produtoId)
     {
-        return View(new VendaCreateViewModel());
+        var viewModel = new VendaCreateViewModel();
+        if (produtoId.HasValue)
+        {
+            var produto = _context.Produtos.FirstOrDefault(p => p.Id == produtoId.Value && p.Ativo);
+            if (produto == null)
+            {
+                return NotFound("Produto não Encontrado");
+            }
+            viewModel.ProdutoId = produto.Id;
+            viewModel.ProdutoBusca = produto.Nome;
+        }
+        return View(viewModel);
     }
 
     // Post : Venda/Create
@@ -80,7 +91,7 @@ public class VendaController : Controller
             _context.Vendas.Add(venda);
             _context.SaveChanges();
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         return View(viewModel);
