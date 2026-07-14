@@ -16,7 +16,22 @@
         </div>
 
         <div class="venda-hero-actions">
-            <a class="venda-link" asp-action="Create" asp-controller="Venda">Cancelar Venda</a>
+            <a class="venda-link" asp-action="Create" asp-controller="Venda">Impressão</a>
+            @if (!Model.Anulada)
+                {
+                    <a class="venda-link"
+                    asp-action="Delete"
+                    asp-controller="Venda"
+                    asp-route-id="@Model.Id">
+                        Cancelar Venda
+                    </a>
+                }
+                else
+                {
+                    <span class="venda-button venda-button-disabled">
+                        Venda cancelada
+                    </span>
+                }
             <a class="venda-back-link" asp-action="Index" asp-controller="Home">Voltar para lista</a>
         </div>
     </div>

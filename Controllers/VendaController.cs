@@ -112,4 +112,66 @@ public class VendaController : Controller
         }
         return View(venda);
     }
+
+    // Get: Venda/Delete
+    public IActionResult Delete(int Id)
+    {
+        var venda = _context.Vendas.FirstOrDefault(v => v.Id == Id);
+        if (venda == null)
+        {
+            return NotFound("Venda não encontrada");
+        }
+        if (venda.Anulada)
+        {
+            return BadRequest("Esta venda já está cancelada.");
+        }
+        return View(new VendaCancelamentoViewModel { Id = venda.Id });
+    }
+
+    // Post: Venda/Delete
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteConfirmed(VendaCancelamentoViewModel viewModel)
+    {
+        var vendaBanco = _context.Vendas.Find(viewModel.Id);
+
+        if (vendaBanco == null)
+        {
+            return NotFound("Venda não encontrada.");
+        }
+
+        if (vendaBanco.Anulada)
+        {
+            return BadRequest("Esta venda já está cancelada.");
+        }
+
+        if (string.IsNullOrWhiteSpace(viewModel.AnuladaPor))
+        {
+            ModelState.AddModelError(
+                nameof(VendaCancelamentoViewModel.AnuladaPor),
+                "Informe o responsável pelo cancelamento."
+            );
+        }
+
+        if (string.IsNullOrWhiteSpace(viewModel.MotivoCancelamento))
+        {
+            ModelState.AddModelError(
+                nameof(VendaCancelamentoViewModel.MotivoCancelamento),
+                "Informe o motivo do cancelamento."
+            );
+        }
+
+        if (!ModelState.IsValid)
+        {
+            return View("Delete", viewModel);
+        }
+
+        vendaBanco.Anulada = true;
+        vendaBanco.AnuladaPor = viewModel.AnuladaPor.Trim();
+        vendaBanco.MotivoCancelamento = viewModel.MotivoCancelamento.Trim();
+        vendaBanco.CanceladaEm = DateTime.Now;
+        _context.SaveChanges();
+
+        return RedirectToAction("Details", new { id = vendaBanco.Id });
+    }
 }

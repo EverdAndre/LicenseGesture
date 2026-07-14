@@ -793,6 +793,107 @@ body {
     color: #172033;
 }
 
+/* Confirmacao de cancelamento da venda */
+.venda-delete-page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 150px);
+}
+
+.venda-delete-card {
+    border-top: 4px solid #dc2626;
+    max-width: 620px;
+    padding: 30px;
+    width: 100%;
+}
+
+.venda-delete-card .venda-section-header {
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.venda-section-header > .venda-alert-icon {
+    background: #fef2f2;
+    color: #dc2626;
+    flex-basis: 56px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    height: 56px;
+}
+
+.venda-delete-card .venda-section-header h2 {
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    margin-bottom: 6px;
+}
+
+.venda-delete-card .venda-section-header p {
+    font-size: 0.9rem;
+}
+
+.venda-delete-form {
+    border-top: 1px solid #edf2f7;
+    padding-top: 20px;
+}
+
+.venda-cancel-reason {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.venda-cancel-reason label {
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.venda-cancel-reason input,
+.venda-cancel-reason textarea {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    color: #172033;
+    font: inherit;
+    padding: 12px 14px;
+    width: 100%;
+}
+
+.venda-cancel-reason textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.venda-cancel-reason input:focus,
+.venda-cancel-reason textarea:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+    outline: none;
+}
+
+.venda-cancel-reason label:not(:first-child) {
+    margin-top: 8px;
+}
+
+.venda-cancel-reason span {
+    color: #dc2626;
+    font-size: 0.82rem;
+}
+
+.venda-delete-form .venda-actions {
+    margin-top: 20px;
+}
+
+.venda-button-danger {
+    background: #dc2626;
+    box-shadow: 0 10px 22px rgba(220, 38, 38, 0.22);
+    color: #fff;
+}
+
+.venda-button-danger:hover {
+    background: #b91c1c;
+    color: #fff;
+}
+
 .autocomplete {
     position: relative;
 }
@@ -1002,6 +1103,18 @@ body {
 
     .venda-button {
         width: 100%;
+    }
+
+    .venda-delete-page {
+        min-height: auto;
+    }
+
+    .venda-delete-card {
+        padding: 20px 16px;
+    }
+
+    .venda-delete-card .venda-section-header {
+        align-items: flex-start;
     }
 
     .venda-table-card {
