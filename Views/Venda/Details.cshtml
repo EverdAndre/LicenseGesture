@@ -1,0 +1,158 @@
+@model LicenseGesture.Models.Venda
+
+@{
+    ViewData["Title"] = $"Venda #{Model.Id}";
+    var statusClass = Model.Anulada ? "venda-status-cancelada" : "venda-status-ativa";
+    var statusText = Model.Anulada ? "Cancelada" : "Ativa";
+}
+
+<link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
+
+<section class="venda-page venda-details-page">
+    <div class="venda-hero">
+        <div>
+            <span class="venda-kicker">Visualização da venda</span>
+            <h1>Venda #@Model.Id</h1>
+        </div>
+
+        <div class="venda-hero-actions">
+            <a class="venda-link" asp-action="Create" asp-controller="Venda">Impressão</a>
+            @if (!Model.Anulada)
+                {
+                    <a class="venda-link"
+                    asp-action="Delete"
+                    asp-controller="Venda"
+                    asp-route-id="@Model.Id">
+                        Cancelar Venda
+                    </a>
+                }
+                else
+                {
+                    <span class="venda-button venda-button-disabled">
+                        Venda cancelada
+                    </span>
+                }
+            <a class="venda-back-link" asp-action="Index" asp-controller="Home">Voltar para lista</a>
+        </div>
+    </div>
+
+    <div class="venda-details-summary">
+        <div>
+            <span class="venda-details-label">Cliente</span>
+            <strong>@Model.Cliente.Nome</strong>
+        </div>
+        <div>
+            <span class="venda-details-label">Produto</span>
+            <strong>@Model.Produto.Nome</strong>
+        </div>
+        <div>
+            <span class="venda-details-label">Situação</span>
+            <span class="venda-status @statusClass">@statusText</span>
+        </div>
+    </div>
+
+    <div class="venda-details-grid">
+        <article class="venda-section venda-details-card">
+            <div class="venda-section-header">
+                <span>01</span>
+                <div>
+                    <h2>Identificação</h2>
+                    <p>Dados principais vinculados à venda.</p>
+                </div>
+            </div>
+
+            <dl class="venda-details-list">
+                <div>
+                    <dt>Código da venda</dt>
+                    <dd>#@Model.Id</dd>
+                </div>
+                <div>
+                    <dt>Cliente</dt>
+                    <dd>@Model.Cliente.Nome</dd>
+                </div>
+                <div>
+                    <dt>Produto</dt>
+                    <dd>@Model.Produto.Nome</dd>
+                </div>
+                <div>
+                    <dt>Criada em</dt>
+                    <dd>@Model.CriadoEm.ToString("dd/MM/yyyy 'às' HH:mm")</dd>
+                </div>
+            </dl>
+        </article>
+
+        <article class="venda-section venda-details-card">
+            <div class="venda-section-header">
+                <span>02</span>
+                <div>
+                    <h2>Valores e pagamento</h2>
+                    <p>Informações comerciais e fiscais.</p>
+                </div>
+            </div>
+
+            <dl class="venda-details-list">
+                <div>
+                    <dt>Valor final</dt>
+                    <dd class="venda-details-price">@(Model.ValorFinalVenda?.ToString("C2") ?? "Não informado")</dd>
+                </div>
+                <div>
+                    <dt>Forma de pagamento</dt>
+                    <dd>@(Model.FormaPagamento?.ToString() ?? "Não informada")</dd>
+                </div>
+                <div class="venda-details-list-wide">
+                    <dt>NF de saída</dt>
+                    <dd>@(string.IsNullOrWhiteSpace(Model.NfSaida) ? "Não informada" : Model.NfSaida)</dd>
+                </div>
+            </dl>
+        </article>
+
+        <article class="venda-section venda-details-card venda-details-period">
+            <div class="venda-section-header">
+                <span>03</span>
+                <div>
+                    <h2>Período da licença</h2>
+                    <p>Datas de ativação e expiração do produto.</p>
+                </div>
+            </div>
+
+            <dl class="venda-details-list venda-details-dates">
+                <div>
+                    <dt>Data de ativação</dt>
+                    <dd>@(Model.DataAtivacao?.ToString("dd/MM/yyyy") ?? "Não informada")</dd>
+                </div>
+                <div>
+                    <dt>Expira em</dt>
+                    <dd>@Model.ExpiraEm.ToString("dd/MM/yyyy")</dd>
+                </div>
+            </dl>
+        </article>
+
+        @if (Model.Anulada)
+        {
+            <article class="venda-section venda-details-card venda-details-cancellation">
+                <div class="venda-section-header">
+                    <span>!</span>
+                    <div>
+                        <h2>Cancelamento</h2>
+                        <p>Informações registradas ao cancelar a venda.</p>
+                    </div>
+                </div>
+
+                <dl class="venda-details-list">
+                    <div>
+                        <dt>Cancelada em</dt>
+                        <dd>@(Model.CanceladaEm?.ToString("dd/MM/yyyy 'às' HH:mm") ?? "Não informado")</dd>
+                    </div>
+                    <div>
+                        <dt>Anulada por</dt>
+                        <dd>@(string.IsNullOrWhiteSpace(Model.AnuladaPor) ? "Não informado" : Model.AnuladaPor)</dd>
+                    </div>
+                    <div class="venda-details-list-wide">
+                        <dt>Motivo</dt>
+                        <dd>@(string.IsNullOrWhiteSpace(Model.MotivoCancelamento) ? "Não informado" : Model.MotivoCancelamento)</dd>
+                    </div>
+                </dl>
+            </article>
+        }
+    </div>
+</section>

@@ -1,0 +1,46 @@
+@model LicenseGesture.ViewModels.VendaCancelamentoViewModel
+
+@{
+    ViewData["Title"] = "Cancelar Venda";
+}
+
+<link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
+
+<section class="venda-page venda-delete-page">
+    <div class="venda-section venda-delete-card">
+        <div class="venda-section-header">
+            <span class="venda-alert-icon">!</span>
+            <div>
+                <h2>Deseja Cancelar esta venda?</h2>
+                <p>#@Model.Id</p>
+            </div>
+        </div>
+
+        <form class="venda-delete-form" asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="venda-cancel-reason">
+                <label asp-for="AnuladaPor">Responsável pelo cancelamento</label>
+                <input asp-for="AnuladaPor"
+                       maxlength="100"
+                       required
+                       autocomplete="name"
+                       placeholder="Informe o nome do responsável" />
+                <span asp-validation-for="AnuladaPor"></span>
+
+                <label asp-for="MotivoCancelamento">Motivo do cancelamento</label>
+                <textarea asp-for="MotivoCancelamento"
+                          rows="4"
+                          maxlength="500"
+                          required
+                          placeholder="Descreva o motivo do cancelamento da venda"></textarea>
+                <span asp-validation-for="MotivoCancelamento"></span>
+            </div>
+
+            <div class="venda-actions">
+                <a class="venda-button venda-button-light" asp-action="Details" asp-controller="Venda" asp-route-id="@Model.Id">Não</a>
+                <button type="submit" class="venda-button venda-button-danger">Sim</button>
+            </div>
+        </form>
+    </div>
+</section>
