@@ -982,6 +982,39 @@ body {
     color: #fff;
 }
 
+.produto-link {
+    align-items: center;
+    background: #e8f5f3;
+    border: 1px solid #c8e8e4;
+    border-radius: 8px;
+    color: #17645f;
+    display: inline-flex;
+    font-size: 0.92rem;
+    font-weight: 750;
+    max-width: 100%;
+    padding: 7px 11px;
+    text-decoration: none;
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.produto-link:hover {
+    background: #1f7a76;
+    border-color: #1f7a76;
+    box-shadow: 0 6px 16px rgba(31, 122, 118, 0.22);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.produto-link:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.produto-link:focus-visible {
+    outline: 3px solid rgba(31, 122, 118, 0.24);
+    outline-offset: 3px;
+}
+
 @media (max-width: 900px) {
     .venda-hero,
     .venda-index-header,

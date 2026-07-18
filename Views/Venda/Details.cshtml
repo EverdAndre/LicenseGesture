@@ -43,7 +43,14 @@
         </div>
         <div>
             <span class="venda-details-label">Produto</span>
-            <strong>@Model.Produto.Nome</strong>
+            <strong>
+                <a class="produto-link" asp-controller="Produto"
+                    asp-action="Details"
+                    asp-route-id="@Model.ProdutoId"
+                    asp-route-returnUrl="@Context.Request.Path">
+                    @Model.Produto.Nome
+                </a>
+            </strong>
         </div>
         <div>
             <span class="venda-details-label">Situação</span>
