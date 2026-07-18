@@ -19,7 +19,12 @@
     <div class="produto-index-actions">
         <div class="produto-search-form">
             <form asp-action="Index" method="get">
-                <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar produto..." />
+                <input type="hidden" name="ordenarPor" value="@ordenacaoAtual" />
+                <input type="hidden" name="direcao" value="@direcaoAtual" />
+                <div class="produto-search-autocomplete">
+                    <input id="ProdutoBusca" type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar produto..." autocomplete="off" />
+                    <div id="ProdutoBuscaResultado" class="autocomplete-list"></div>
+                </div>
                 <button type="submit">Buscar</button>
             </form>
         </div>
@@ -94,3 +99,6 @@ else
 {
     <p>Nenhum produto cadastrado.</p>
 }
+
+<script src="~/js/autocomplete.js" asp-append-version="true"></script>
+<script src="~/js/produto/buscarProduto.js" asp-append-version="true"></script>

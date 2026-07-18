@@ -23,7 +23,8 @@ public class ProdutoController : Controller
 
         if (!string.IsNullOrWhiteSpace(busca))
         {
-            query = query.Where(p => p.Nome.Contains(busca));
+            busca = busca.Trim();
+            query = query.Where(p => EF.Functions.Like(p.Nome, $"%{busca}%"));
         }
         var produtos = query.ToList();
         produtos = (ordenarPor, direcao) switch
@@ -47,7 +48,7 @@ public class ProdutoController : Controller
     // Get: Produto/Create
     public IActionResult Create(string? returnUrl)
     {
-        ViewData["ReturnUrl"]= returnUrl;
+        ViewData["ReturnUrl"] = returnUrl;
         return View();
     }
 
@@ -69,12 +70,12 @@ public class ProdutoController : Controller
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["ReturnUrl"]= returnUrl;
+            ViewData["ReturnUrl"] = returnUrl;
             return View(produto);
         }
         catch
         {
-            ViewData["ReturnUrl"]= returnUrl;
+            ViewData["ReturnUrl"] = returnUrl;
             return View(produto);
         }
     }
@@ -135,5 +136,24 @@ public class ProdutoController : Controller
         produtoBanco.Ativo = false;
         _context.SaveChanges();
         return RedirectToAction("Index");
+    }
+
+    public IActionResult BuscarProdutos(string? busca)
+    {
+        if (string.IsNullOrWhiteSpace(busca))
+        {
+            return Json(Array.Empty<object>());
+        }
+
+        busca = busca.Trim();
+
+        var produtos = _context
+            .Produtos.Where(p => p.Ativo && EF.Functions.Like(p.Nome, $"%{busca}%"))
+            .OrderBy(p => p.Nome)
+            .Take(10)
+            .Select(p => new { id = p.Id, nome = p.Nome })
+            .ToList();
+
+        return Json(produtos);
     }
 }

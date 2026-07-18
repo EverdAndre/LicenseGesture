@@ -19,7 +19,12 @@
     <div class="cliente-index-actions">
         <div class="cliente-search-form">
             <form asp-action="Index" method="get">
-                <input type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar cliente..." />
+                <input type="hidden" name="ordenarPor" value="@ordenacaoAtual" />
+                <input type="hidden" name="direcao" value="@direcaoAtual" />
+                <div class="cliente-search-autocomplete">
+                    <input id="ClienteBusca" type="text" name="busca" value="@ViewData["BuscaAtual"]" placeholder="Buscar cliente..." autocomplete="off" />
+                    <div id="ClienteBuscaResultado" class="autocomplete-list"></div>
+                </div>
                 <button type="submit">Buscar</button>
             </form>
         </div>
@@ -86,3 +91,5 @@ else
 {
     <p>Nenhum cliente cadastrado.</p>
 }
+<script src="~/js/autocomplete.js" asp-append-version="true"></script>
+<script src="~/js/cliente/buscarCliente.js" asp-append-version="true"></script>

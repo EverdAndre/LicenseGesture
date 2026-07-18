@@ -20,8 +20,10 @@ public class HomeController : Controller
 
         if (!string.IsNullOrWhiteSpace(busca))
         {
+            busca = busca.Trim();
             query = query.Where(p =>
-                p.Cliente.Nome.Contains(busca) || p.Produto.Nome.Contains(busca)
+                EF.Functions.Like(p.Cliente.Nome, $"%{busca}%")
+                || EF.Functions.Like(p.Produto.Nome, $"%{busca}%")
             );
         }
         var vendas = query.ToList();
