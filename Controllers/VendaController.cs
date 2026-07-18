@@ -26,8 +26,10 @@ public class VendaController : Controller
 
         if (!string.IsNullOrWhiteSpace(busca))
         {
-            clientes = clientes.Where(p => p.Nome.Contains(busca));
+            busca = busca.Trim();
+            clientes = clientes.Where(p => EF.Functions.Like(p.Nome, $"%{busca}%"));
         }
+
         var resultado = clientes
             .OrderBy(c => c.Nome)
             .Take(10)
@@ -43,7 +45,8 @@ public class VendaController : Controller
         var produtos = _context.Produtos.Where(p => p.Ativo).AsQueryable();
         if (!string.IsNullOrWhiteSpace(busca))
         {
-            produtos = produtos.Where(p => p.Nome.Contains(busca));
+            busca = busca.Trim();
+            produtos = produtos.Where(p => EF.Functions.Like(p.Nome, $"%{busca}%"));
         }
         var resultado = produtos
             .OrderBy(c => c.Nome)

@@ -23,7 +23,9 @@ public class ClienteController : Controller
 
         if (!string.IsNullOrWhiteSpace(busca))
         {
-            cliente = cliente.Where(p => p.Nome.Contains(busca));
+            busca = busca.Trim();
+
+            cliente = cliente.Where(p => EF.Functions.Like(p.Nome, $"%{busca}%"));
         }
         cliente = (ordenarPor, direcao) switch
         {
@@ -62,12 +64,12 @@ public class ClienteController : Controller
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["ReturnUrl"]= returnUrl;
+            ViewData["ReturnUrl"] = returnUrl;
             return View(cliente);
         }
         catch
         {
-            ViewData["ReturnUrl"]= returnUrl;
+            ViewData["ReturnUrl"] = returnUrl;
             return View(cliente);
         }
     }
@@ -128,5 +130,24 @@ public class ClienteController : Controller
         clienteBanco.Ativo = false;
         _context.SaveChanges();
         return RedirectToAction("Index");
+    }
+
+    public IActionResult BuscarClientes(string? busca)
+    {
+        if (string.IsNullOrWhiteSpace(busca))
+        {
+            return Json(Array.Empty<object>());
+        }
+
+        busca = busca.Trim();
+
+        var clientes = _context
+            .Clientes.Where(p => p.Ativo && EF.Functions.Like(p.Nome, $"%{busca}%"))
+            .OrderBy(p => p.Nome)
+            .Take(10)
+            .Select(p => new { id = p.Id, nome = p.Nome })
+            .ToList();
+
+        return Json(clientes);
     }
 }
