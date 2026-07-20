@@ -1,4 +1,5 @@
 using System.Data.Common;
+using System.Threading.Tasks;
 using LicenseGesture.Context;
 using LicenseGesture.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -83,11 +84,13 @@ public class ProdutoController : Controller
     // Get : Produto/Edit
     public IActionResult Edit(int Id)
     {
+
         var produto = _context.Produtos.Find(Id);
         if (produto == null)
         {
             return NotFound();
         }
+
         return View(produto);
     }
 
@@ -156,4 +159,19 @@ public class ProdutoController : Controller
 
         return Json(produtos);
     }
+    public async Task <IActionResult> Details(int? id, string? returnUrl)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.Id == id);
+        if (produto == null)
+        {
+            return NotFound();
+        }
+        ViewBag.ReturnUrl = returnUrl;
+        return View(produto);
+    }
+
 }

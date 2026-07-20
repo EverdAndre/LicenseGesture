@@ -1,8 +1,7 @@
 @model LicenseGesture.Models.Produto
-@using LicenseGesture.Enums
 
 @{
-    ViewData["Title"] = "Editar produto";
+    ViewData["Title"] = "Produto";
 }
 
 <link rel="stylesheet" href="~/css/produto.css" asp-append-version="true" />
@@ -10,8 +9,8 @@
 <section class="produto-page">
     <div class="produto-hero">
         <div>
-            <span class="produto-kicker">Edição de produto</span>
-            <h1>Editar produto</h1>
+            <span class="produto-kicker">Produto</span>
+            <h1>Produto</h1>
             <p>@Model.Nome</p>
         </div>
         @if(!string.IsNullOrWhiteSpace(ViewBag.ReturnUrl)){
@@ -23,9 +22,7 @@
         }
     </div>
 
-    <form asp-action="Edit" method="post" class="produto-form">
-        <input type="hidden" asp-for="Id" />
-        <div asp-validation-summary="ModelOnly" class="produto-validation"></div>
+    <div class="produto-form">
 
         <div class="produto-form-grid">
             <div class="produto-section produto-section-main">
@@ -39,28 +36,30 @@
                 <div class="produto-fields-grid">
                     <div class="produto-field produto-field-wide">
                         <label asp-for="Nome"></label>
-                        <input asp-for="Nome" placeholder="Ex: Microsoft 365 Business" autocomplete="off" />
-                        <span asp-validation-for="Nome"></span>
+                        <div class="produto-readonly-value">
+                            @Model.Nome
+                        </div>
                     </div>
 
                     <div class="produto-field produto-field-wide">
                         <label asp-for="Chave"></label>
-                        <input asp-for="Chave" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" autocomplete="off" />
-                        <span asp-validation-for="Chave"></span>
+                        <div class="produto-readonly-value">
+                            @Model.Chave
+                        </div>
                     </div>
 
                     <div class="produto-field">
                         <label asp-for="TipoProduto">Tipo de produto</label>
-                        <select asp-for="TipoProduto" asp-items="Html.GetEnumSelectList<TipoProduto>()">
-                            <option value="">Selecione</option>
-                        </select>
-                        <span asp-validation-for="TipoProduto"></span>
+                        <div class="produto-readonly-value">
+                            @Model.TipoProduto
+                        </div>
                     </div>
 
                     <div class="produto-field">
                         <label asp-for="Validade"></label>
-                        <input asp-for="Validade" placeholder="Ex: 1 ano ou vitalícia" autocomplete="off" />
-                        <span asp-validation-for="Validade"></span>
+                        <div class="produto-readonly-value">
+                            @Model.Validade
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,27 +69,30 @@
                     <span>02</span>
                     <div>
                         <h2>Valores e documento</h2>
-                        <p>Informe custos, venda e nota fiscal de entrada.</p>
+                        <p>Custos, venda e nota fiscal de entrada.</p>
                     </div>
                 </div>
 
                 <div class="produto-fields-grid">
                     <div class="produto-field">
                         <label asp-for="ValorCusto">Valor de custo</label>
-                        <input asp-for="ValorCusto" type="number" min="0" step="0.01" placeholder="0,00" />
-                        <span asp-validation-for="ValorCusto"></span>
+                        <div class="produto-readonly-value">
+                            @Model.ValorCusto?.ToString("C")
+                        </div>
                     </div>
 
                     <div class="produto-field">
                         <label asp-for="ValorVenda">Valor de venda</label>
-                        <input asp-for="ValorVenda" type="number" min="0" step="0.01" placeholder="0,00" />
-                        <span asp-validation-for="ValorVenda"></span>
+                        <div class="produto-readonly-value">
+                            @Model.ValorVenda?.ToString("C")
+                        </div>
                     </div>
 
                     <div class="produto-field produto-field-wide">
                         <label asp-for="NfEntrada">NF de entrada</label>
-                        <input asp-for="NfEntrada" type= "number" placeholder="Número da nota fiscal" autocomplete="off" />
-                        <span asp-validation-for="NfEntrada"></span>
+                        <div class="produto-readonly-value">
+                            @Model.NfEntrada
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,21 +102,23 @@
                     <span>03</span>
                     <div>
                         <h2>Limites de uso</h2>
-                        <p>Defina as quantidades permitidas pela licença.</p>
+                        <p>Quantidades permitidas pela licença.</p>
                     </div>
                 </div>
 
                 <div class="produto-fields-grid">
                     <div class="produto-field">
                         <label asp-for="QuantDispositivos">Dispositivos</label>
-                        <input asp-for="QuantDispositivos" type="number" min="0" placeholder="0" />
-                        <span asp-validation-for="QuantDispositivos"></span>
+                        <div class="produto-readonly-value">
+                            @Model.QuantDispositivos
+                        </div>
                     </div>
 
                     <div class="produto-field">
                         <label asp-for="QuantUsuarios">Usuários</label>
-                        <input asp-for="QuantUsuarios" type="number" min="0" placeholder="0" />
-                        <span asp-validation-for="QuantUsuarios"></span>
+                        <div class="produto-readonly-value">
+                            @Model.QuantUsuarios
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,27 +128,25 @@
                     <span>04</span>
                     <div>
                         <h2>Status</h2>
-                        <p>Controle se o produto está ativo.</p>
+                        <p>Ativo.</p>
                     </div>
                 </div>
 
-                <label class="produto-switch">
-                    <input asp-for="Ativo" />
-                    <span></span>
-                    <strong>Produto ativo</strong>
-                </label>
+                <div class="produto-status-display">
+                    @if (Model.Ativo)
+                    {
+                        <span class="produto-status produto-status-active">
+                            Ativo
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="produto-status produto-status-inactive">
+                            Inativo
+                        </span>
+                    }
+                </div>
             </aside>
         </div>
-
-        <div class="produto-actions">
-            <a class="produto-button produto-button-danger" asp-action="Delete" asp-route-id="@Model.Id">Excluir</a>
-            <a class="produto-button produto-button-light" asp-action="Index">Cancelar</a>
-            <button type="submit" class="produto-button produto-button-primary">Salvar</button>
-        </div>
-    </form>
+    </div>
 </section>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-@{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
