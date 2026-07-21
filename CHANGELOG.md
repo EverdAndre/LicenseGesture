@@ -8,8 +8,18 @@ Este projeto segue o padrão de **Versionamento Semântico (SemVer)**.
 - **MINOR (1.X.0)** → Novas funcionalidades compatíveis.
 - **PATCH (1.0.X)** → Correções de erros e pequenos ajustes.
 
----
+## 1.1.0 - 20/07/2026
 
+### Adicionado
+
+- Tela Produto/Details para consulta de produtos.
+- Navegação entre entidades utilizando returnUrl.
+- Separação arquitetural entre telas de consulta (Details) e edição (Edit).
+
+### Alterado
+
+- Venda/Details passa a abrir Produto/Details.
+- Botão Voltar reutiliza automaticamente o returnUrl quando informado.
 # [1.0.1] - 17/07/2026
 
 ## Corrigido
