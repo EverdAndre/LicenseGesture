@@ -4,16 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #f4f7fb;
-    color: #172033;
-    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    min-width: 320px;
-    overflow-x: hidden;
-    padding: 0;
-}
-
 .produto-page,
 .produto-index-header,
 .table-responsive {
@@ -241,6 +231,14 @@ body {
 
 .table tbody tr:last-child td {
     border-bottom: 0;
+}
+
+.table-striped tbody tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+.table-hover tbody tr:hover td {
+    background: #eef8f7;
 }
 
 .produto-search-form input[type="text"]:focus {
@@ -554,6 +552,18 @@ body {
     color: #94a3b8;
 }
 
+.produto-readonly-value {
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid #dbe3ee;
+    border-radius: 8px;
+    color: #172033;
+    display: flex;
+    min-height: 46px;
+    overflow-wrap: anywhere;
+    padding: 10px 13px;
+}
+
 .produto-field span,
 .produto-validation {
     color: #c2410c;
@@ -602,6 +612,28 @@ body {
 
 .produto-status-panel .produto-section-header p {
     font-size: 0.84rem;
+}
+
+.produto-status-display {
+    display: flex;
+}
+
+.produto-status {
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.88rem;
+    font-weight: 800;
+    padding: 7px 12px;
+}
+
+.produto-status-active {
+    background: rgba(45, 187, 143, 0.18);
+    color: #76e3bf;
+}
+
+.produto-status-inactive {
+    background: rgba(248, 113, 113, 0.18);
+    color: #fca5a5;
 }
 
 .produto-switch {
@@ -699,14 +731,12 @@ body {
     color: #172033;
 }
 
-.produto-button-danger,
 .produto-button-danger {
     background: #dc2626;
     box-shadow: 0 10px 22px rgba(220, 38, 38, 0.22);
     color: #fff;
 }
 
-.produto-button-danger:hover,
 .produto-button-danger:hover {
     background: #b91c1c;
     color: #fff;

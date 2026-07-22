@@ -50,7 +50,8 @@ public class ProdutoController : Controller
     public IActionResult Create(string? returnUrl)
     {
         ViewData["ReturnUrl"] = returnUrl;
-        return View();
+        var produto = new Produto();
+        return View(produto);
     }
 
     // Post : Produto/Create

@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
 
-<section class="venda-page venda-details-page">
+<section class="venda-page">
     <div class="venda-hero">
         <div>
             <span class="venda-kicker">Visualização da venda</span>
@@ -32,14 +32,21 @@
                         Venda cancelada
                     </span>
                 }
-            <a class="venda-back-link" asp-action="Index" asp-controller="Home">Voltar para lista</a>
+            <a class="venda-back-link" asp-action="Index" asp-controller="Home">Voltar</a>
         </div>
     </div>
 
     <div class="venda-details-summary">
         <div>
             <span class="venda-details-label">Cliente</span>
-            <strong>@Model.Cliente.Nome</strong>
+            <strong>
+                <a class="cliente-link" asp-controller="Cliente"
+                    asp-action="Details"
+                    asp-route-id="@Model.ClienteId"
+                    asp-route-returnUrl="@Context.Request.Path">
+                    @Model.Cliente.Nome
+                </a>
+            </strong>
         </div>
         <div>
             <span class="venda-details-label">Produto</span>
