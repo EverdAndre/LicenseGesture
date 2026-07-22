@@ -63,15 +63,36 @@
                                     Expira em <span class="venda-sort-icon">@SetaOrdenacao("validade")</span>
                                 </a>
                             </th>
-                            <th>Status</th>
+                            <th>
+                                <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="status" asp-route-direcao="@ProximaDirecao("status")">
+                                    Status <span class="venda-sort-icon">@SetaOrdenacao("status")</span>
+                                </a>
+                            </th>
                             <th class="venda-actions-column">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var venda in vendas)
                         {
-                            var statusClasse = venda.Anulada ? "venda-status-cancelada" : "venda-status-ativa";
-                            var statusTexto = venda.Anulada ? "Cancelada" : "Ativa";
+                            var hoje = DateOnly.FromDateTime(DateTime.Today);
+                            string statusClasse;
+                            string statusTexto;
+
+                            if (venda.Anulada)
+                            {
+                                statusClasse = "venda-status-cancelada";
+                                statusTexto = "Cancelada";
+                            }
+                            else if (venda.ExpiraEm < hoje)
+                            {
+                                statusClasse = "venda-status-expirada";
+                                statusTexto = "Licença Expirada";
+                            }
+                            else
+                            {
+                                statusClasse = "venda-status-ativa";
+                                statusTexto = "Ativa";
+                            }
 
                             <tr>
                                 <td class="venda-id"># @venda.Id</td>

@@ -150,4 +150,18 @@ public class ClienteController : Controller
 
         return Json(clientes);
     }
+    public async Task <IActionResult> Details(int? id, string? returnUrl)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == id);
+        if (cliente == null)
+        {
+            return NotFound();
+        }
+        ViewBag.ReturnUrl = returnUrl;
+        return View(cliente);
+    }
 }

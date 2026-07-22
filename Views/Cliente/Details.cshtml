@@ -1,0 +1,110 @@
+@model LicenseGesture.Models.Cliente
+@using LicenseGesture.Enums
+
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+<link rel="stylesheet" href="~/css/cliente.css" asp-append-version="true" />
+
+<section class="cliente-page">
+    <div class="cliente-hero">
+        <div>
+            <span class="cliente-kicker">Cliente</span>
+            <h1>Detalhes do cliente</h1>
+            <p>@Model.Nome</p>
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(ViewBag.ReturnUrl))
+        {
+            <a class="cliente-back-link" href="@ViewBag.ReturnUrl">Voltar</a>
+        }
+        else
+        {
+            <a class="cliente-back-link" asp-action="Index">Voltar</a>
+        }
+    </div>
+
+    <div class="cliente-form">
+        <div class="cliente-form-grid">
+            <div class="cliente-section cliente-section-main">
+                <div class="cliente-section-header">
+                    <span>01</span>
+                    <div>
+                        <h2>Identificação</h2>
+                        <p>Dados do cliente cadastrado.</p>
+                    </div>
+                </div>
+
+                <div class="cliente-fields-grid">
+                    <div class="cliente-field cliente-field-wide">
+                        <label asp-for="Nome"></label>
+                        <div class="cliente-readonly-value">@Model.Nome</div>
+                    </div>
+
+                    @if (Model.TipoPessoa == TipoPessoa.Fisica)
+                    {
+                        <div class="cliente-field">
+                            <label asp-for="Cpf"></label>
+                            <div class="cliente-readonly-value">@(string.IsNullOrWhiteSpace(Model.Cpf) ? "Não informado" : Model.Cpf)</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="cliente-field">
+                            <label asp-for="Cnpj"></label>
+                            <div class="cliente-readonly-value">@(string.IsNullOrWhiteSpace(Model.Cnpj) ? "Não informado" : Model.Cnpj)</div>
+                        </div>
+                    }
+
+                    <div class="cliente-field cliente-field-type">
+                        <label asp-for="TipoPessoa">Tipo de pessoa</label>
+                        <div class="cliente-readonly-value">@(Model.TipoPessoa == TipoPessoa.Fisica ? "Pessoa física" : "Pessoa jurídica")</div>
+                    </div>
+
+                    <div class="cliente-field cliente-field-wide">
+                        <label asp-for="Endereco">Endereço</label>
+                        <div class="cliente-readonly-value">@(string.IsNullOrWhiteSpace(Model.Endereco) ? "Não informado" : Model.Endereco)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cliente-section cliente-contact-section">
+                <div class="cliente-section-header">
+                    <span>02</span>
+                    <div>
+                        <h2>Contato</h2>
+                        <p>Canais para falar com o cliente.</p>
+                    </div>
+                </div>
+
+                <div class="cliente-fields-grid">
+                    <div class="cliente-field">
+                        <label asp-for="Telefone"></label>
+                        <div class="cliente-readonly-value">@(string.IsNullOrWhiteSpace(Model.Telefone) ? "Não informado" : Model.Telefone)</div>
+                    </div>
+                    <div class="cliente-field">
+                        <label asp-for="Email"></label>
+                        <div class="cliente-readonly-value">@(string.IsNullOrWhiteSpace(Model.Email) ? "Não informado" : Model.Email)</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="cliente-section cliente-status-panel">
+                <div class="cliente-section-header">
+                    <span>03</span>
+                    <div>
+                        <h2>Status</h2>
+                        <p>Situação atual do cliente.</p>
+                    </div>
+                </div>
+
+                <div class="cliente-status-display">
+                    <span class="cliente-status @(Model.Ativo ? "cliente-status-active" : "cliente-status-inactive")">
+                        @(Model.Ativo ? "Ativo" : "Inativo")
+                    </span>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

@@ -8,15 +8,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #f4f7fb;
-    color: #172033;
-    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    min-width: 320px;
-    overflow-x: hidden;
-}
-
 .venda-page {
     color: #172033;
     margin: 0 auto;
@@ -982,6 +973,7 @@ body {
     color: #fff;
 }
 
+.cliente-link,
 .produto-link {
     align-items: center;
     background: #e8f5f3;
@@ -997,6 +989,7 @@ body {
     transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
+.cliente-link:hover,
 .produto-link:hover {
     background: #1f7a76;
     border-color: #1f7a76;
@@ -1005,14 +998,32 @@ body {
     transform: translateY(-1px);
 }
 
+.cliente-link:active,
 .produto-link:active {
     box-shadow: none;
     transform: translateY(0);
 }
 
+.cliente-link:focus-visible,
 .produto-link:focus-visible {
     outline: 3px solid rgba(31, 122, 118, 0.24);
     outline-offset: 3px;
+}
+
+.venda-button-disabled {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.72);
+    cursor: not-allowed;
+    min-width: auto;
+}
+
+.venda-details-dates > div {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
 }
 
 @media (max-width: 900px) {
