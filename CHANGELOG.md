@@ -8,7 +8,7 @@ Este projeto segue o padrão de **Versionamento Semântico (SemVer)**.
 - **MINOR (1.X.0)** → Novas funcionalidades compatíveis.
 - **PATCH (1.0.X)** → Correções de erros e pequenos ajustes.
 
-# [1.1.0] — Em desenvolvimento
+# [1.2.0] — Concluida
 
 Nova evolução funcional do cadastro de produtos, controle de disponibilidade,
 consulta de credenciais administrativas, navegação e experiência de cadastro.
