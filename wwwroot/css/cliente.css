@@ -525,6 +525,10 @@ body {
     gap: 7px;
 }
 
+.cliente-field[hidden] {
+    display: none;
+}
+
 .cliente-field-wide {
     grid-column: 1 / -1;
 }

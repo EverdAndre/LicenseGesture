@@ -14,7 +14,12 @@ public class Produto
 
     [Required(ErrorMessage = "Campo Chave é Obrigatório!")]
     public string Chave { get; set; } = string.Empty;
+    public string? EmailAdm {get; set;}
+    public string? SenhaAdm {get; set;}
     public int? QuantDispositivos { get; set; }
+    
+    [Required(ErrorMessage ="Produto não pode ter Quantidade menor ou igual a zero ")]
+    public int Quantidade {get; set;}
     public int? QuantUsuarios { get; set; }
     public decimal? ValorCusto { get; set; }
     public decimal? ValorVenda { get; set; }

@@ -25,6 +25,24 @@ function configurarAutocomplete(config) {
             return;
         }
 
+        if (
+            config.validarEstoque &&
+            item.quantidade !== undefined &&
+            item.quantidade <= 0
+            ) {
+                alert("Este produto está sem estoque disponível para venda.");
+
+                campoBusca.value = "";
+
+                if (campoId) {
+                    campoId.value = "";
+                }
+
+                limparResultado();
+
+                return;
+                }
+
         campoBusca.value = item.nome;
 
         if (campoId) {

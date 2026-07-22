@@ -49,6 +49,18 @@
                         <span asp-validation-for="Chave"></span>
                     </div>
 
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="EmailAdm">Email Adm</label>
+                        <input asp-for="EmailAdm" placeholder="Ex: Email Adm da Conta " autocomplete="off" />
+                        <span asp-validation-for="EmailAdm"></span>
+                    </div>
+
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="SenhaAdm">Senha Adm</label>
+                        <input asp-for="SenhaAdm" placeholder="Ex: Senha Adm da Conta " autocomplete="off" />
+                        <span asp-validation-for="SenhaAdm"></span>
+                    </div>
+
                     <div class="produto-field">
                         <label asp-for="TipoProduto">Tipo de produto</label>
                         <select asp-for="TipoProduto" asp-items="Html.GetEnumSelectList<TipoProduto>()">
@@ -105,6 +117,12 @@
                 </div>
 
                 <div class="produto-fields-grid">
+                    <div class="produto-field">
+                        <label asp-for="Quantidade"></label>
+                        <input asp-for="Quantidade" type="number" min="0" placeholder="0" />
+                        <span asp-validation-for="Quantidade"></span>
+                    </div>
+
                     <div class="produto-field">
                         <label asp-for="QuantDispositivos">Dispositivos</label>
                         <input asp-for="QuantDispositivos" type="number" min="0" placeholder="0" />

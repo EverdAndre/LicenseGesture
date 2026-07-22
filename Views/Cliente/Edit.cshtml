@@ -37,13 +37,13 @@
                         <input asp-for="Nome" placeholder="Ex: Fulano da Silva" autocomplete="off" />
                         <span asp-validation-for="Nome"></span>
                     </div>
-                <div class="cliente-field">
+                <div class="cliente-field" id="campoCpf" hidden>
                         <label asp-for="Cpf"></label>
                         <input asp-for="Cpf" placeholder="XXX.XXX.XXX-XX" autocomplete="off" />
                         <span asp-validation-for="Cpf"></span>
                     </div>
 
-                    <div class="cliente-field">
+                    <div class="cliente-field" id="campoCnpj" hidden>
                         <label asp-for="Cnpj"></label>
                         <input asp-for="Cnpj" placeholder="XX.XXX.XXX/XXXX-XX" autocomplete="off" />
                         <span asp-validation-for="Cnpj"></span>
@@ -115,6 +115,7 @@
 </section>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/cliente/tipoPessoa.js" asp-append-version="true"></script>
 @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }

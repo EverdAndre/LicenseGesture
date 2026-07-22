@@ -48,6 +48,20 @@
                         </div>
                     </div>
 
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="EmailAdm"></label>
+                        <div class="produto-readonly-value">
+                            @Model.EmailAdm
+                        </div>
+                    </div>
+
+                    <div class="produto-field produto-field-wide">
+                        <label asp-for="SenhaAdm"></label>
+                        <div class="produto-readonly-value">
+                            @Model.SenhaAdm
+                        </div>
+                    </div>
+
                     <div class="produto-field">
                         <label asp-for="TipoProduto">Tipo de produto</label>
                         <div class="produto-readonly-value">
@@ -107,6 +121,13 @@
                 </div>
 
                 <div class="produto-fields-grid">
+                    <div class="produto-field">
+                        <label asp-for="Quantidade"></label>
+                        <div class="produto-readonly-value">
+                            @Model.Quantidade
+                        </div>
+                    </div>
+
                     <div class="produto-field">
                         <label asp-for="QuantDispositivos">Dispositivos</label>
                         <div class="produto-readonly-value">
