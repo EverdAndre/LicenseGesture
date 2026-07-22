@@ -49,9 +49,9 @@ public class VendaController : Controller
             produtos = produtos.Where(p => EF.Functions.Like(p.Nome, $"%{busca}%"));
         }
         var resultado = produtos
-            .OrderBy(c => c.Nome)
+            .OrderBy(p => p.Nome)
             .Take(10)
-            .Select(c => new { id = c.Id, nome = c.Nome })
+            .Select(p => new { id = p.Id, nome = p.Nome, quantidade = p.Quantidade })
             .ToList();
 
         return Json(resultado);
@@ -68,6 +68,10 @@ public class VendaController : Controller
             {
                 return NotFound("Produto não Encontrado");
             }
+            else if(produto.Quantidade <= 0)
+            {
+                return BadRequest("Produto sem Estoque para Venda");
+            }
             viewModel.ProdutoId = produto.Id;
             viewModel.ProdutoBusca = produto.Nome;
         }
@@ -76,30 +80,60 @@ public class VendaController : Controller
 
     // Post : Venda/Create
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Create(VendaCreateViewModel viewModel)
+[ValidateAntiForgeryToken]
+public IActionResult Create(VendaCreateViewModel viewModel)
+{
+    if (!ModelState.IsValid)
     {
-        if (ModelState.IsValid)
-        {
-            var venda = new Venda
-            {
-                ClienteId = viewModel.ClienteId!.Value,
-                ProdutoId = viewModel.ProdutoId!.Value,
-                ValorFinalVenda = viewModel.ValorFinalVenda,
-                NfSaida = viewModel.NfSaida,
-                FormaPagamento = viewModel.FormaPagamento,
-                DataAtivacao = viewModel.DataAtivacao,
-                ExpiraEm = viewModel.ExpiraEm,
-            };
+        return View(viewModel);
+    }
 
-            _context.Vendas.Add(venda);
-            _context.SaveChanges();
+    var produto = _context.Produtos
+        .FirstOrDefault(p =>
+            p.Id == viewModel.ProdutoId!.Value &&
+            p.Ativo
+        );
 
-            return RedirectToAction("Index", "Home");
-        }
+    if (produto == null)
+    {
+        ModelState.AddModelError(
+            nameof(viewModel.ProdutoId),
+            "Produto não encontrado ou inativo."
+        );
 
         return View(viewModel);
     }
+
+    if (produto.Quantidade <= 0)
+    {
+        ModelState.AddModelError(
+            nameof(viewModel.ProdutoId),
+            "Produto sem estoque disponível para venda."
+        );
+
+        viewModel.ProdutoBusca = produto.Nome;
+
+        return View(viewModel);
+    }
+
+    var venda = new Venda
+    {
+        ClienteId = viewModel.ClienteId!.Value,
+        ProdutoId = produto.Id,
+        ValorFinalVenda = viewModel.ValorFinalVenda,
+        NfSaida = viewModel.NfSaida,
+        FormaPagamento = viewModel.FormaPagamento,
+        DataAtivacao = viewModel.DataAtivacao,
+        ExpiraEm = viewModel.ExpiraEm
+    };
+
+    produto.Quantidade--;
+
+    _context.Vendas.Add(venda);
+    _context.SaveChanges();
+
+    return RedirectToAction("Index", "Home");
+}
 
     // Get : Venda/Details
     public IActionResult Details(int Id)
