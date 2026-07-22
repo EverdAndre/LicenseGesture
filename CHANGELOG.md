@@ -8,6 +8,41 @@ Este projeto segue o padrão de **Versionamento Semântico (SemVer)**.
 - **MINOR (1.X.0)** → Novas funcionalidades compatíveis.
 - **PATCH (1.0.X)** → Correções de erros e pequenos ajustes.
 
+# [1.2.1] - 2026-07-22
+
+## Corrigido
+
+### Produtos
+
+- Corrigido o comportamento da tela de cadastro de produtos para que novos registros sejam criados com o campo **Ativo** marcado por padrão.
+- Ajustado o fluxo de inicialização da Model na ação `Create`, garantindo consistência entre a regra de negócio e a interface do usuário.
+
+### Vendas
+
+- Corrigida a ordenação por **Data de Expiração** na tela inicial.
+- Ajustada a lógica de ordenação para priorizar licenças ativas, mantendo licenças expiradas e vendas canceladas no final da listagem.
+- Implementada ordenação por prioridade de status sem remover registros da consulta.
+
+### Status das Licenças
+
+- Implementado o novo status **Expirada** para identificar automaticamente licenças cuja data de expiração já foi ultrapassada.
+- Ajustada a lógica de classificação considerando o tipo `DateOnly`, eliminando inconsistências na comparação de datas.
+
+### Interface
+
+- Corrigidos os estilos da tela **Cliente/Details**, padronizando a apresentação visual da página.
+- Adicionados estilos específicos para o novo status **Expirada**, mantendo a identidade visual dos demais indicadores de status.
+
+## Melhorias
+
+- Refatorada a lógica de ordenação das vendas, separando a prioridade do status da ordenação escolhida pelo usuário.
+- Implementada função dedicada para cálculo da prioridade dos status, tornando o código mais legível e de fácil manutenção.
+- Melhorada a organização da HomeController, reduzindo duplicação de regras de ordenação.
+
+## Impacto
+
+Esta versão não altera a estrutura do banco de dados e é totalmente compatível com a migration introduzida na versão **v1.2.1**.
+
 # [1.2.0] — Concluida
 
 Nova evolução funcional do cadastro de produtos, controle de disponibilidade,
