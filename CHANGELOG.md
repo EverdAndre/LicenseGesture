@@ -8,6 +8,23 @@ Este projeto segue o padrão de **Versionamento Semântico (SemVer)**.
 - **MINOR (1.X.0)** → Novas funcionalidades compatíveis.
 - **PATCH (1.0.X)** → Correções de erros e pequenos ajustes.
 
+# [1.2.2] - Em desenvolvimento
+
+## Alterado
+
+### Vendas
+
+- O endpoint `BuscarProdutos` foi ajustado para retornar apenas produtos ativos com estoque disponível (`Quantidade > 0`).
+- Produtos com estoque zerado não são mais exibidos no autocomplete da tela **Venda > Nova Venda**.
+- A pesquisa continua utilizando `EF.Functions.Like()` para realizar buscas parciais pelo nome do produto.
+- A validação de estoque no servidor foi mantida, garantindo a integridade da regra de negócio caso o estoque seja alterado entre a pesquisa e a conclusão da venda.
+
+## Objetivo
+
+- Melhorar a experiência do usuário durante a seleção de produtos.
+- Evitar a exibição de itens indisponíveis para venda.
+- Manter a consistência entre a interface e as regras de negócio da aplicação.
+
 # [1.2.1] - 2026-07-22
 
 ## Corrigido
