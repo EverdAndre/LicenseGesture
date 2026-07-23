@@ -154,8 +154,8 @@ public class ProdutoController : Controller
         var produtos = _context
             .Produtos.Where(p => p.Ativo && EF.Functions.Like(p.Nome, $"%{busca}%"))
             .OrderBy(p => p.Nome)
-            .Take(10)
-            .Select(p => new { id = p.Id, nome = p.Nome })
+            .Take(5)
+            .Select(p => new { id = p.Id, nome = p.Nome})
             .ToList();
 
         return Json(produtos);

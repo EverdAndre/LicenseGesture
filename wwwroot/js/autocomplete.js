@@ -85,8 +85,7 @@ function configurarAutocomplete(config) {
                 opcao.className = "autocomplete-item";
                 opcao.setAttribute("role", "option");
                 opcao.setAttribute("aria-selected", "false");
-                opcao.textContent = item.tipo ? `${item.tipo}: ${item.nome}` : item.nome;
-
+                opcao.textContent = item.tipo? `${item.tipo}: ${item.nome} - ID: ${item.id}`: `${item.nome} - ID: ${item.id}`;
                 opcao.addEventListener("mousedown", function (event) {
                     event.preventDefault();
                     selecionarItem(index);

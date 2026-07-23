@@ -46,11 +46,11 @@ public class VendaController : Controller
         if (!string.IsNullOrWhiteSpace(busca))
         {
             busca = busca.Trim();
-            produtos = produtos.Where(p => EF.Functions.Like(p.Nome, $"%{busca}%"));
+            produtos = produtos.Where(p => p.Quantidade > 0 && EF.Functions.Like(p.Nome, $"%{busca}%"));
         }
         var resultado = produtos
             .OrderBy(p => p.Nome)
-            .Take(10)
+            .Take(5)
             .Select(p => new { id = p.Id, nome = p.Nome, quantidade = p.Quantidade })
             .ToList();
 
