@@ -11,7 +11,7 @@
         <div>
             <span class="produto-kicker">Produto</span>
             <h1>Produto</h1>
-            <p>@Model.Nome</p>
+            <p> ID - @Model.Id @Model.Nome</p>
         </div>
         @if(!string.IsNullOrWhiteSpace(ViewBag.ReturnUrl)){
             <a class="produto-back-link" href="@ViewBag.ReturnUrl">Voltar</a>

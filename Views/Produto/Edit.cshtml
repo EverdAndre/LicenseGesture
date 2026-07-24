@@ -12,7 +12,7 @@
         <div>
             <span class="produto-kicker">Edição de produto</span>
             <h1>Editar produto</h1>
-            <p>@Model.Nome</p>
+            <p>ID - @Model.Id @Model.Nome</p>
         </div>
         @if(!string.IsNullOrWhiteSpace(ViewBag.ReturnUrl)){
             <a class="produto-back-link" href="@ViewBag.ReturnUrl">Voltar</a>
