@@ -53,6 +53,11 @@
                         </a>
                     </th>
                     <th>
+                        <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="quantidade" asp-route-direcao="@ProximaDirecao("quantidade")">
+                            Disponivel <span class="produto-sort-icon">@SetaOrdenacao("quantidade")</span>
+                        </a>
+                    </th>
+                    <th>
                         <a asp-action="Index" asp-route-busca="@ViewData["BuscaAtual"]" asp-route-ordenarPor="valor" asp-route-direcao="@ProximaDirecao("valor")">
                             Valor de venda <span class="produto-sort-icon">@SetaOrdenacao("valor")</span>
                         </a>
@@ -71,6 +76,7 @@
                     <tr>
                         <td># @produto.Id</td>
                         <td>@produto.Nome</td>
+                        <td>@produto.Quantidade</td>
                         <td>@(produto.ValorVenda?.ToString("C"))</td>
                         <td>@produto.Validade</td>
                         <td class="produto-actions-cell">
