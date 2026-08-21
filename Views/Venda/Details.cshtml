@@ -115,7 +115,20 @@
                 </div>
                 <div class="venda-details-list-wide">
                     <dt>NF de saída</dt>
-                    <dd>@(string.IsNullOrWhiteSpace(Model.NfSaida) ? "Não informada" : Model.NfSaida)</dd>
+                    <strong>
+                        @if (string.IsNullOrWhiteSpace(Model.NfSaida))
+                        {
+                        <a class="venda-edit-link"
+                            asp-controller="Venda"
+                            asp-action="Edit"
+                            asp-route-id="@Model.Id"
+                            asp-route-returnUrl="@Context.Request.Path">
+                            NF não informada
+                        </a>
+                        }else{
+                            @Model.NfSaida
+                        }
+                    </strong>
                 </div>
             </dl>
         </article>
