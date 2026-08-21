@@ -12,33 +12,29 @@ public class HomeController : Controller
     }
 
     // Retorna a lista de vendas do banco de dados.
-    public IActionResult Index(
-        string? busca,
-        string? ordenarPor,
-        string? direcao)
+    public IActionResult Index(int? ClienteId, string? busca, string? ordenarPor, string? direcao)
     {
         var hoje = DateOnly.FromDateTime(DateTime.Today);
 
-        var query = _context.Vendas
-            .Include(v => v.Cliente)
-            .Include(v => v.Produto)
-            .AsQueryable();
+        var query = _context.Vendas.Include(v => v.Cliente).Include(v => v.Produto).AsQueryable();
+        
+        if (ClienteId.HasValue)
+        {
+            query = query.Where(v => v.ClienteId == ClienteId.Value);
+        }
 
-        ordenarPor = string.IsNullOrWhiteSpace(ordenarPor)
-            ? "id"
-            : ordenarPor;
+        ordenarPor = string.IsNullOrWhiteSpace(ordenarPor) ? "id" : ordenarPor;
 
-        direcao = direcao == "desc"
-            ? "desc"
-            : "asc";
+        direcao = direcao == "desc" ? "desc" : "asc";
 
         if (!string.IsNullOrWhiteSpace(busca))
         {
             busca = busca.Trim();
 
             query = query.Where(v =>
-                EF.Functions.Like(v.Cliente.Nome, $"%{busca}%") ||
-                EF.Functions.Like(v.Produto.Nome, $"%{busca}%"));
+                EF.Functions.Like(v.Cliente.Nome, $"%{busca}%")
+                || EF.Functions.Like(v.Produto.Nome, $"%{busca}%")
+            );
         }
 
         var vendas = query.ToList();
@@ -103,7 +99,7 @@ public class HomeController : Controller
             _ => vendas
                 .OrderBy(v => ObterPrioridadeStatus(v.Anulada, v.ExpiraEm, hoje))
                 .ThenBy(v => v.ExpiraEm)
-                .ToList()
+                .ToList(),
         };
 
         ViewData["BuscaAtual"] = busca;
@@ -113,10 +109,7 @@ public class HomeController : Controller
         return View(vendas);
     }
 
-    private static int ObterPrioridadeStatus(
-        bool anulada,
-        DateOnly expiraEm,
-        DateOnly hoje)
+    private static int ObterPrioridadeStatus(bool anulada, DateOnly expiraEm, DateOnly hoje)
     {
         if (anulada)
         {
