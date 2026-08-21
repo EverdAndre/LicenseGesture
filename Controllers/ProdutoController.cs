@@ -32,9 +32,11 @@ public class ProdutoController : Controller
         {
             ("id", "desc") => produtos.OrderByDescending(p => p.Id).ToList(),
             ("nome", "desc") => produtos.OrderByDescending(p => p.Nome).ToList(),
+            ("quantidade", "desc") => produtos.OrderByDescending(p => p.Quantidade).ToList(),
             ("valor", "desc") => produtos.OrderByDescending(p => p.ValorVenda ?? 0).ToList(),
             ("validade", "desc") => produtos.OrderByDescending(p => p.Validade).ToList(),
             ("nome", _) => produtos.OrderBy(p => p.Nome).ToList(),
+            ("quantidade", _) => produtos.OrderBy(p => p.Quantidade).ToList(),
             ("valor", _) => produtos.OrderBy(p => p.ValorVenda ?? 0).ToList(),
             ("validade", _) => produtos.OrderBy(p => p.Validade).ToList(),
             _ => produtos.OrderBy(p => p.Id).ToList(),
