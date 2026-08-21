@@ -974,7 +974,8 @@
 }
 
 .cliente-link,
-.produto-link {
+.produto-link,
+.venda-edit-link {
     align-items: center;
     background: #e8f5f3;
     border: 1px solid #c8e8e4;
@@ -990,7 +991,8 @@
 }
 
 .cliente-link:hover,
-.produto-link:hover {
+.produto-link:hover,
+.venda-edit-link:hover {
     background: #1f7a76;
     border-color: #1f7a76;
     box-shadow: 0 6px 16px rgba(31, 122, 118, 0.22);
@@ -999,13 +1001,15 @@
 }
 
 .cliente-link:active,
-.produto-link:active {
+.produto-link:active,
+.venda-edit-link:active {
     box-shadow: none;
     transform: translateY(0);
 }
 
 .cliente-link:focus-visible,
-.produto-link:focus-visible {
+.produto-link:focus-visible,
+.venda-edit-link:focus-visible {
     outline: 3px solid rgba(31, 122, 118, 0.24);
     outline-offset: 3px;
 }

@@ -150,6 +150,43 @@ public IActionResult Create(VendaCreateViewModel viewModel)
         return View(venda);
     }
 
+    // Get: Venda/Edit
+    public IActionResult Edit(int id, string? returnUrl = null)
+    {
+        var venda = _context.Vendas.Find(id);
+
+        if (venda == null)
+        {
+            return NotFound("Venda não encontrada.");
+        }
+
+        ViewData["ReturnUrl"] = returnUrl;
+        return View(venda);
+    }
+
+    // Post: Venda/Edit
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(int id, string? nfSaida, string? returnUrl = null)
+    {
+        var venda = _context.Vendas.Find(id);
+
+        if (venda == null)
+        {
+            return NotFound("Venda não encontrada.");
+        }
+
+        venda.NfSaida = string.IsNullOrWhiteSpace(nfSaida) ? null : nfSaida.Trim();
+        _context.SaveChanges();
+
+        if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+        {
+            return LocalRedirect(returnUrl);
+        }
+
+        return RedirectToAction(nameof(Details), new { id = venda.Id });
+    }
+
     // Get: Venda/Delete
     public IActionResult Delete(int Id)
     {

@@ -1,0 +1,43 @@
+@model LicenseGesture.Models.Venda
+
+@{
+    ViewData["Title"] = $"Editar NF da venda #{Model.Id}";
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+<link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
+
+<section class="venda-page">
+    <div class="venda-hero">
+        <div>
+            <span class="venda-kicker">Edição da venda</span>
+            <h1>Venda #@Model.Id</h1>
+        </div>
+        <a class="venda-back-link" asp-action="Details" asp-route-id="@Model.Id">Voltar</a>
+    </div>
+
+    <form asp-action="Edit" method="post" class="venda-form">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <input type="hidden" name="returnUrl" value="@returnUrl" />
+
+        <div class="venda-section">
+            <div class="venda-section-header">
+                <span>01</span>
+                <div>
+                    <h2>Informações fiscais</h2>
+                    <p>Atualize o número da nota fiscal de saída.</p>
+                </div>
+            </div>
+
+            <div class="venda-field venda-field-wide">
+                <label asp-for="NfSaida">NF de saída</label>
+                <input asp-for="NfSaida" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="venda-actions">
+            <a class="venda-button venda-button-light" asp-action="Details" asp-route-id="@Model.Id">Cancelar</a>
+            <button type="submit" class="venda-button venda-button-primary">Salvar</button>
+        </div>
+    </form>
+</section>
