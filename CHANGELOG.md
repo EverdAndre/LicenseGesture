@@ -10,12 +10,29 @@ Este projeto segue o padrão de **Versionamento Semântico (SemVer)**.
 
 # [1.2.3] - Em desenvolvimento
 
+## Adicionado
+
+### Produtos
+
+- Adicionada a coluna **Disponível** à listagem de produtos para exibir a quantidade atual em estoque.
+- A nova coluna permite ordenar os produtos pela quantidade, em ordem crescente ou decrescente.
+
+### Vendas
+
+- Adicionadas as ações `GET` e `POST` de `Venda/Edit` para editar a **NF de saída** de uma venda existente.
+- Criada a tela **Venda > Editar** com proteção antifalsificação e retorno à página de origem.
+
 ## Corrigido
 
 ### Produtos
 
 - Corrigida a identificação do produto nas telas **Produto > Detalhes** e **Produto > Editar**.
 - O cabeçalho das duas telas agora exibe o **ID** junto ao nome do produto, facilitando a conferência e a identificação do registro.
+
+### Vendas
+
+- Corrigido o link da **NF de saída** em **Venda > Detalhes** para enviar o ID da venda à ação `Edit`.
+- Corrigida a referência de exibição da nota fiscal para utilizar diretamente `Model.NfSaida`.
 
 ## Alterado
 
@@ -25,6 +42,7 @@ Este projeto segue o padrão de **Versionamento Semântico (SemVer)**.
 - Produtos com estoque zerado não são mais exibidos no autocomplete da tela **Venda > Nova Venda**.
 - A pesquisa continua utilizando `EF.Functions.Like()` para realizar buscas parciais pelo nome do produto.
 - A validação de estoque no servidor foi mantida, garantindo a integridade da regra de negócio caso o estoque seja alterado entre a pesquisa e a conclusão da venda.
+- O link da **NF de saída** passou a seguir o padrão visual do projeto, incluindo os estados de foco, interação e passagem do cursor.
 
 ## Objetivo
 
