@@ -39,7 +39,7 @@ public class ProdutoController : Controller
             ("quantidade", _) => produtos.OrderBy(p => p.Quantidade).ToList(),
             ("valor", _) => produtos.OrderBy(p => p.ValorVenda ?? 0).ToList(),
             ("validade", _) => produtos.OrderBy(p => p.Validade).ToList(),
-            _ => produtos.OrderBy(p => p.Id).ToList(),
+            _ => produtos.OrderByDescending(p => p.Quantidade).ToList(),
         };
         ViewData["BuscaAtual"] = busca;
         ViewData["OrdenacaoAtual"] = ordenarPor;
